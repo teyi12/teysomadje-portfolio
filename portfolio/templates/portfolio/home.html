@@ -1,0 +1,786 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}
+TeyiSomadje — Full Stack Web Developer
+{% endblock %}
+
+{% block content %}
+
+<!-- ========================================
+     HERO
+========================================= -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="row align-items-center min-vh-100">
+
+            <!-- HERO TEXT -->
+            <div class="col-12 col-lg-7">
+
+                <div class="hero-content">
+
+                    <div class="hero-badge">
+                        <span></span>
+                        FULL STACK WEB DEVELOPER
+                    </div>
+
+                    <h1 class="hero-title">
+                        I build modern,
+                        <span>scalable</span>
+                        web applications.
+                    </h1>
+
+                    <p class="hero-description">
+                        I design and develop high-quality digital experiences
+                        with Python, Django and modern web technologies.
+                        From idea to deployment, I turn complex problems
+                        into simple, elegant solutions.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="#projects"
+                            class="btn btn-primary hero-btn"
+                        >
+                            View my work
+                            <span>→</span>
+                        </a>
+
+                        <a
+                            href="#contact"
+                            class="btn btn-outline-light hero-btn"
+                        >
+                            Contact me
+                            <span>→</span>
+                        </a>
+
+                    </div>
+
+                    <div class="hero-stack">
+
+                        <span>🐍 Python</span>
+                        <span>🟢 Django</span>
+                        <span>🅱 Bootstrap</span>
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>Git</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO VISUAL -->
+            <div class="col-lg-5 d-none d-lg-block">
+
+                <div class="hero-visual">
+
+                    <div class="developer-card">
+
+                        <div class="developer-card-header">
+
+                            <span class="code-dot"></span>
+
+                            <strong>
+                                Django
+                            </strong>
+
+                        </div>
+
+                        <div class="developer-code">
+
+                            <p>
+                                <span class="code-purple">def</span>
+                                <span class="code-yellow">
+                                    build_solutions
+                                </span>():
+                            </p>
+
+                            <p class="code-indent">
+                                <span class="code-purple">
+                                    return
+                                </span>
+                                [
+                            </p>
+
+                            <p class="code-indent-2">
+                                "Clean code",
+                            </p>
+
+                            <p class="code-indent-2">
+                                "Modern design",
+                            </p>
+
+                            <p class="code-indent-2">
+                                "Scalable apps",
+                            </p>
+
+                            <p class="code-indent-2">
+                                "Happy users"
+                            </p>
+
+                            <p class="code-indent">
+                                ]
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="hero-bee">
+                        🐝
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================
+     SELECTED WORK
+========================================= -->
+
+<section
+    class="projects-section"
+    id="projects"
+>
+
+    <div class="container">
+
+        <!-- SECTION TITLE -->
+        <div class="section-heading text-center">
+
+            <p class="section-eyebrow">
+                SELECTED WORK
+            </p>
+
+            <h2>
+                Featured Projects
+            </h2>
+
+            <p>
+                A selection of web applications built with
+                Django and modern web technologies.
+            </p>
+
+        </div>
+
+
+        <!-- PROJECT GRID -->
+        <div class="row g-4">
+
+
+            <!-- ========================================
+                 PROJECT 1
+            ========================================= -->
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="project-card">
+
+                    <div class="project-image">
+
+                        <div class="project-image-placeholder">
+                            TaskFlow
+                        </div>
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <div class="project-tags">
+
+                            <span>Django</span>
+                            <span>Bootstrap</span>
+                            <span>PostgreSQL</span>
+
+                        </div>
+
+                        <h3>
+                            TaskFlow
+                        </h3>
+
+                        <p>
+                            Project management application designed
+                            for team collaboration, task tracking
+                            and productivity.
+                        </p>
+
+                        <div class="project-footer">
+
+                            <a
+                                href="#"
+                                class="project-link"
+                            >
+                                GitHub
+                            </a>
+
+                            <a
+                                href="#"
+                                class="project-link project-link-primary"
+                            >
+                                Live Demo
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- ========================================
+                 PROJECT 2
+            ========================================= -->
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="project-card">
+
+                    <div class="project-image">
+
+                        <div class="project-image-placeholder">
+                            TechStore
+                        </div>
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <div class="project-tags">
+
+                            <span>Django</span>
+                            <span>E-commerce</span>
+                            <span>Stripe</span>
+
+                        </div>
+
+                        <h3>
+                            TechStore
+                        </h3>
+
+                        <p>
+                            Modern e-commerce platform with product
+                            management, shopping cart, payments
+                            and order tracking.
+                        </p>
+
+                        <div class="project-footer">
+
+                            <a
+                                href="#"
+                                class="project-link"
+                            >
+                                GitHub
+                            </a>
+
+                            <a
+                                href="#"
+                                class="project-link project-link-primary"
+                            >
+                                Live Demo
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- ========================================
+                 PROJECT 3
+            ========================================= -->
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <article class="project-card">
+
+                    <div class="project-image">
+
+                        <div class="project-image-placeholder">
+                            Portfolio API
+                        </div>
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <div class="project-tags">
+
+                            <span>Django REST</span>
+                            <span>API</span>
+                            <span>Authentication</span>
+
+                        </div>
+
+                        <h3>
+                            Portfolio API
+                        </h3>
+
+                        <p>
+                            REST API for managing portfolio projects,
+                            technologies and content with secure
+                            authentication.
+                        </p>
+
+                        <div class="project-footer">
+
+                            <a
+                                href="#"
+                                class="project-link"
+                            >
+                                GitHub
+                            </a>
+
+                            <a
+                                href="#"
+                                class="project-link project-link-primary"
+                            >
+                                API Demo
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================
+     ABOUT
+     Placeholder for next step
+========================================= -->
+
+<!-- ========================================
+     ABOUT
+========================================= -->
+
+<section
+    class="about-section"
+    id="about"
+>
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <!-- LEFT SIDE -->
+            <div class="col-lg-5">
+
+                <div class="about-label">
+                    ABOUT ME
+                </div>
+
+                <h2 class="about-title">
+                    Building digital products
+                    with code, strategy
+                    and purpose.
+                </h2>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+            <div class="col-lg-7">
+
+                <div class="about-content">
+
+                    <p class="about-lead">
+                        I'm a Full Stack Developer focused on building
+                        modern, scalable and user-centered web applications.
+                    </p>
+
+                    <p>
+                        My core stack is Python and Django, combined with
+                        Bootstrap, databases, APIs and modern frontend
+                        technologies.
+                    </p>
+
+                    <p>
+                        I enjoy turning ideas into real digital products —
+                        from architecture and backend development to
+                        responsive interfaces and deployment.
+                    </p>
+
+                    <div class="about-stats">
+
+                        <div class="about-stat">
+                            <strong>Python</strong>
+                            <span>Backend</span>
+                        </div>
+
+                        <div class="about-stat">
+                            <strong>Django</strong>
+                            <span>Web Apps</span>
+                        </div>
+
+                        <div class="about-stat">
+                            <strong>Full Stack</strong>
+                            <span>End-to-End</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================
+     SERVICES
+     Placeholder for next step
+========================================= -->
+
+<!-- ========================================
+     SERVICES
+========================================= -->
+
+<section
+    class="services-section"
+    id="services"
+>
+
+    <div class="container">
+
+        <div class="section-heading text-center">
+
+            <p class="section-eyebrow">
+                SERVICES
+            </p>
+
+            <h2>
+                What I can build for you
+            </h2>
+
+            <p>
+                From backend architecture to polished interfaces,
+                I build complete digital products with a focus on
+                performance, scalability and maintainability.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- SERVICE 1 -->
+            <div class="col-md-6 col-lg-3">
+
+                <article class="service-card">
+
+                    <div class="service-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Web Application Development
+                    </h3>
+
+                    <p>
+                        Modern and scalable web applications built
+                        with Django, Bootstrap and reliable backend
+                        architecture.
+                    </p>
+
+                    <div class="service-tags">
+                        <span>Django</span>
+                        <span>Bootstrap</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- SERVICE 2 -->
+            <div class="col-md-6 col-lg-3">
+
+                <article class="service-card">
+
+                    <div class="service-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Backend & API Development
+                    </h3>
+
+                    <p>
+                        Secure backend systems, REST APIs,
+                        authentication, business logic
+                        and database integrations.
+                    </p>
+
+                    <div class="service-tags">
+                        <span>Python</span>
+                        <span>REST API</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- SERVICE 3 -->
+            <div class="col-md-6 col-lg-3">
+
+                <article class="service-card">
+
+                    <div class="service-number">
+                        03
+                    </div>
+
+                    <h3>
+                        E-commerce & Platforms
+                    </h3>
+
+                    <p>
+                        Custom commerce experiences with product
+                        management, payments, customer flows
+                        and administration tools.
+                    </p>
+
+                    <div class="service-tags">
+                        <span>Payments</span>
+                        <span>Platforms</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- SERVICE 4 -->
+            <div class="col-md-6 col-lg-3">
+
+                <article class="service-card">
+
+                    <div class="service-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Product & Technical Consulting
+                    </h3>
+
+                    <p>
+                        Technical guidance for turning an idea
+                        into a structured, maintainable
+                        and scalable digital product.
+                    </p>
+
+                    <div class="service-tags">
+                        <span>Architecture</span>
+                        <span>Strategy</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>>
+
+
+<!-- ========================================
+     CONTACT
+     Placeholder for next step
+========================================= -->
+
+<!-- ========================================
+     CONTACT
+========================================= -->
+
+<section
+    class="contact-section"
+    id="contact"
+>
+
+    <div class="container">
+
+        <div class="contact-wrapper">
+
+            <div class="row g-5 align-items-center">
+
+                <!-- LEFT -->
+                <div class="col-lg-6">
+
+                    <p class="section-eyebrow">
+                        CONTACT
+                    </p>
+
+                    <h2 class="contact-title">
+                        Let's build something
+                        <span>great together.</span>
+                    </h2>
+
+                    <p class="contact-description">
+                        Have a project, an idea or a technical challenge?
+                        Let's talk about how I can help turn it into
+                        a modern and scalable digital product.
+                    </p>
+
+                    <div class="contact-links">
+
+                        <a href="mailto:your-email@example.com">
+                            Email
+                            <span>→</span>
+                        </a>
+
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            GitHub
+                            <span>→</span>
+                        </a>
+
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            LinkedIn
+                            <span>→</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT -->
+                <div class="col-lg-6">
+                    {% if messages %}
+
+    {% for message in messages %}
+
+        <div class="contact-alert">
+            {{ message }}
+        </div>
+
+    {% endfor %}
+
+{% endif %}
+
+                    <div class="contact-card">
+
+                        <form method="POST">
+                             {% csrf_token %}
+
+                            <form method="POST">
+
+    {% csrf_token %}
+
+
+    <!-- NAME -->
+    <div class="mb-4">
+
+        <label
+            for="{{ form.name.id_for_label }}"
+            class="form-label"
+        >
+            Name
+        </label>
+
+        {{ form.name }}
+
+        {% if form.name.errors %}
+
+            <div class="form-error">
+                {{ form.name.errors.0 }}
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- EMAIL -->
+    <div class="mb-4">
+
+        <label
+            for="{{ form.email.id_for_label }}"
+            class="form-label"
+        >
+            Email
+        </label>
+
+        {{ form.email }}
+
+        {% if form.email.errors %}
+
+            <div class="form-error">
+                {{ form.email.errors.0 }}
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- MESSAGE -->
+    <div class="mb-4">
+
+        <label
+            for="{{ form.message.id_for_label }}"
+            class="form-label"
+        >
+            Message
+        </label>
+
+        {{ form.message }}
+
+        {% if form.message.errors %}
+
+            <div class="form-error">
+                {{ form.message.errors.0 }}
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <button
+        type="submit"
+        class="btn btn-primary contact-submit"
+    >
+        Send message
+        <span>→</span>
+    </button>
+
+</form>
+
+</section>
+
+{% endblock %}
