@@ -4,9 +4,12 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
 from .forms import ContactForm
+from .models import Project
 
 
 def home(request):
+    projects = Project.objects.filter(featured=True)
+
     if request.method == "POST":
         form = ContactForm(request.POST)
 
@@ -42,5 +45,6 @@ def home(request):
         "portfolio/home.html",
         {
             "form": form,
+            "projects": projects,
         },
     )

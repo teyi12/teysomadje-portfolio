@@ -151,6 +151,10 @@ TeyiSomadje — Full Stack Web Developer
      SELECTED WORK
 ========================================= -->
 
+<!-- ========================================
+     SELECTED WORK
+========================================= -->
+
 <section
     class="projects-section"
     id="projects"
@@ -176,203 +180,124 @@ TeyiSomadje — Full Stack Web Developer
 
         </div>
 
+        
 
         <!-- PROJECT GRID -->
         <div class="row g-4">
 
+            {% for project in projects %}
 
-            <!-- ========================================
-                 PROJECT 1
-            ========================================= -->
+                <div class="col-12 col-md-6 col-lg-4">
 
-            <div class="col-12 col-md-6 col-lg-4">
+                    <article class="project-card">
 
-                <article class="project-card">
+                        <!-- IMAGE -->
+                        <div class="project-image">
 
-                    <div class="project-image">
+                            {% if project.image %}
 
-                        <div class="project-image-placeholder">
-                            TaskFlow
-                        </div>
+                                <img
+                                    src="{{ project.image.url }}"
+                                    alt="{{ project.title }}"
+                                    class="project-img"
+                                >
 
-                    </div>
+                            {% else %}
 
-                    <div class="project-content">
+                                <div class="project-image-placeholder">
+                                    {{ project.title }}
+                                </div>
 
-                        <div class="project-tags">
-
-                            <span>Django</span>
-                            <span>Bootstrap</span>
-                            <span>PostgreSQL</span>
-
-                        </div>
-
-                        <h3>
-                            TaskFlow
-                        </h3>
-
-                        <p>
-                            Project management application designed
-                            for team collaboration, task tracking
-                            and productivity.
-                        </p>
-
-                        <div class="project-footer">
-
-                            <a
-                                href="#"
-                                class="project-link"
-                            >
-                                GitHub
-                            </a>
-
-                            <a
-                                href="#"
-                                class="project-link project-link-primary"
-                            >
-                                Live Demo
-                                <span>→</span>
-                            </a>
+                            {% endif %}
 
                         </div>
 
-                    </div>
 
-                </article>
+                        <!-- CONTENT -->
+                        <div class="project-content">
 
-            </div>
+                            <!-- TECHNOLOGIES -->
+                            <div class="project-tags">
 
+                                {% for technology in project.technology_list %}
 
-            <!-- ========================================
-                 PROJECT 2
-            ========================================= -->
+                                    <span>
+                                        {{ technology }}
+                                    </span>
 
-            <div class="col-12 col-md-6 col-lg-4">
+                                {% endfor %}
 
-                <article class="project-card">
-
-                    <div class="project-image">
-
-                        <div class="project-image-placeholder">
-                            TechStore
-                        </div>
-
-                    </div>
-
-                    <div class="project-content">
-
-                        <div class="project-tags">
-
-                            <span>Django</span>
-                            <span>E-commerce</span>
-                            <span>Stripe</span>
-
-                        </div>
-
-                        <h3>
-                            TechStore
-                        </h3>
-
-                        <p>
-                            Modern e-commerce platform with product
-                            management, shopping cart, payments
-                            and order tracking.
-                        </p>
-
-                        <div class="project-footer">
-
-                            <a
-                                href="#"
-                                class="project-link"
-                            >
-                                GitHub
-                            </a>
-
-                            <a
-                                href="#"
-                                class="project-link project-link-primary"
-                            >
-                                Live Demo
-                                <span>→</span>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-            </div>
+                            </div>
 
 
-            <!-- ========================================
-                 PROJECT 3
-            ========================================= -->
+                            <!-- TITLE -->
+                            <h3>
+                                {{ project.title }}
+                            </h3>
 
-            <div class="col-12 col-md-6 col-lg-4">
 
-                <article class="project-card">
+                            <!-- DESCRIPTION -->
+                            <p>
+                                {{ project.description }}
+                            </p>
 
-                    <div class="project-image">
 
-                        <div class="project-image-placeholder">
-                            Portfolio API
-                        </div>
+                            <!-- LINKS -->
+                            <div class="project-footer">
 
-                    </div>
+                                {% if project.github_url %}
 
-                    <div class="project-content">
+                                    <a
+                                        href="{{ project.github_url }}"
+                                        class="project-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        GitHub
+                                    </a>
 
-                        <div class="project-tags">
+                                {% endif %}
 
-                            <span>Django REST</span>
-                            <span>API</span>
-                            <span>Authentication</span>
+
+                                {% if project.live_url %}
+
+                                    <a
+                                        href="{{ project.live_url }}"
+                                        class="project-link project-link-primary"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Live Demo
+                                        <span>→</span>
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
 
                         </div>
 
-                        <h3>
-                            Portfolio API
-                        </h3>
+                    </article>
 
-                        <p>
-                            REST API for managing portfolio projects,
-                            technologies and content with secure
-                            authentication.
-                        </p>
+                </div>
 
-                        <div class="project-footer">
+            {% empty %}
 
-                            <a
-                                href="#"
-                                class="project-link"
-                            >
-                                GitHub
-                            </a>
+                <div class="col-12">
 
-                            <a
-                                href="#"
-                                class="project-link project-link-primary"
-                            >
-                                API Demo
-                                <span>→</span>
-                            </a>
+                    <p class="text-center text-secondary">
+                        No featured projects yet.
+                    </p>
 
-                        </div>
+                </div>
 
-                    </div>
-
-                </article>
-
-            </div>
+            {% endfor %}
 
         </div>
 
     </div>
 
 </section>
-
-
 <!-- ========================================
      ABOUT
      Placeholder for next step
@@ -458,6 +383,193 @@ TeyiSomadje — Full Stack Web Developer
 
 </section>
 
+<!-- ========================================
+     TECH STACK
+========================================= -->
+
+<section
+    class="skills-section"
+    id="stack"
+>
+
+    <div class="container">
+
+        <!-- SECTION HEADER -->
+        <div class="section-heading text-center">
+
+            <p class="section-eyebrow">
+                TECH STACK
+            </p>
+
+            <h2>
+                Technologies I work with
+            </h2>
+
+            <p>
+                A modern development stack for building
+                scalable web applications from backend
+                architecture to production-ready interfaces.
+            </p>
+
+        </div>
+
+
+        <!-- SKILLS GRID -->
+        <div class="row g-4">
+
+            <!-- BACKEND -->
+            <div class="col-md-6 col-lg-4">
+
+                <article class="skill-category">
+
+                    <div class="skill-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Backend
+                    </h3>
+
+                    <p>
+                        Server-side development, application
+                        architecture and REST APIs.
+                    </p>
+
+                    <div class="skills-tags">
+                        <span>Python</span>
+                        <span>Django</span>
+                        <span>Django REST</span>
+                        <span>REST API</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- FRONTEND -->
+            <div class="col-md-6 col-lg-4">
+
+                <article class="skill-category">
+
+                    <div class="skill-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Frontend
+                    </h3>
+
+                    <p>
+                        Responsive and accessible interfaces
+                        for modern web applications.
+                    </p>
+
+                    <div class="skills-tags">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>Bootstrap</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- DATABASE -->
+            <div class="col-md-6 col-lg-4">
+
+                <article class="skill-category">
+
+                    <div class="skill-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Database
+                    </h3>
+
+                    <p>
+                        Data modeling and persistence for
+                        reliable web applications.
+                    </p>
+
+                    <div class="skills-tags">
+                        <span>PostgreSQL</span>
+                        <span>SQLite</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- TOOLS -->
+            <div class="col-md-6 col-lg-6">
+
+                <article class="skill-category">
+
+                    <div class="skill-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Tools & DevOps
+                    </h3>
+
+                    <p>
+                        Development workflows, version control,
+                        containers and Linux environments.
+                    </p>
+
+                    <div class="skills-tags">
+                        <span>Git</span>
+                        <span>GitHub</span>
+                        <span>Docker</span>
+                        <span>Linux</span>
+                        <span>WSL</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- PLATFORMS -->
+            <div class="col-md-6 col-lg-6">
+
+                <article class="skill-category">
+
+                    <div class="skill-number">
+                        05
+                    </div>
+
+                    <h3>
+                        Platforms & Integrations
+                    </h3>
+
+                    <p>
+                        External services, payments, media
+                        management and commerce platforms.
+                    </p>
+
+                    <div class="skills-tags">
+                        <span>Stripe</span>
+                        <span>Cloudinary</span>
+                        <span>WordPress</span>
+                        <span>WooCommerce</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 <!-- ========================================
      SERVICES

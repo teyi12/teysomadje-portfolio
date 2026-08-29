@@ -129,3 +129,6 @@ CONTACT_EMAIL = os.getenv(
     "CONTACT_EMAIL",
     "teyi@localhost",
 )
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
