@@ -1,6 +1,10 @@
 asgiref==3.12.1
+click==8.5.0
 Django==6.1
+gunicorn==26.2.0
+h11==0.16.0
 pillow==12.3.0
 python-dotenv==1.2.3
 sqlparse==0.6.0
+uvicorn==0.52.4
 whitenoise==6.12.0
