@@ -211,4 +211,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-});
+/* ========================================
+   ACTIVE NAV LINK ON SCROLL
+======================================== */
+
+const sections = document.querySelectorAll(
+    "section[id]"
+);
+
+const sectionNavLinks =
+    document.querySelectorAll(
+        '.navbar .nav-link[href^="#"]'
+    );
+
+
+const updateActiveNav = () => {
+
+    let currentSectionId = "";
+
+    const scrollPosition =
+        window.scrollY + 140;
+
+
+    sections.forEach((section) => {
+
+        const sectionTop =
+            section.offsetTop;
+
+        const sectionHeight =
+            section.offsetHeight;
+
+        if (
+            scrollPosition >= sectionTop &&
+            scrollPosition <
+            sectionTop + sectionHeight
+        ) {
+            currentSectionId =
+                section.getAttribute("id");
+        }
+
+    });
+
+
+    sectionNavLinks.forEach((link) => {
+
+        link.classList.remove("active");
+
+        const href =
+            link.getAttribute("href");
+
+        if (
+            href === `#${currentSectionId}`
+        ) {
+            link.classList.add("active");
+        }
+
+    });
+
+};
+
+
+updateActiveNav();
+
+window.addEventListener(
+    "scroll",
+    updateActiveNav,
+    { passive: true }
+);});

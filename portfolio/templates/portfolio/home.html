@@ -1,4 +1,5 @@
 {% extends "portfolio/base.html" %}
+{% load static %}
 
 {% block title %}
 TeyiSomadje — Full Stack Web Developer
@@ -10,19 +11,19 @@ TeyiSomadje — Full Stack Web Developer
      HERO
 ========================================= -->
 
-<section class="hero">
+<section class="hero" id="home">
 
     <div class="container">
 
-        <div class="row align-items-center min-vh-100">
+        <div class="row align-items-center hero-row g-5">
 
-            <!-- HERO TEXT -->
-            <div class="col-12 col-lg-7">
+            <!-- LEFT -->
+            <div class="col-lg-6">
 
                 <div class="hero-content">
 
                     <div class="hero-badge">
-                        <span></span>
+                        <span class="hero-badge-dot"></span>
                         FULL STACK WEB DEVELOPER
                     </div>
 
@@ -35,24 +36,18 @@ TeyiSomadje — Full Stack Web Developer
                     <p class="hero-description">
                         I design and develop high-quality digital experiences
                         with Python, Django and modern web technologies.
-                        From idea to deployment, I turn complex problems
-                        into simple, elegant solutions.
+                        From idea to deployment, I turn complex problems into
+                        simple, elegant solutions.
                     </p>
 
                     <div class="hero-actions">
 
-                        <a
-                            href="#projects"
-                            class="btn btn-primary hero-btn"
-                        >
+                        <a href="#projects" class="hero-btn hero-btn-primary">
                             View my work
                             <span>→</span>
                         </a>
 
-                        <a
-                            href="#contact"
-                            class="btn btn-outline-light hero-btn"
-                        >
+                        <a href="#contact" class="hero-btn hero-btn-secondary">
                             Contact me
                             <span>→</span>
                         </a>
@@ -60,96 +55,42 @@ TeyiSomadje — Full Stack Web Developer
                     </div>
 
                     <div class="hero-stack">
-
-                        <span>🐍 Python</span>
-                        <span>🟢 Django</span>
-                        <span>🅱 Bootstrap</span>
+                        <span>Python</span>
+                        <span>Django</span>
+                        <span>Bootstrap</span>
                         <span>HTML</span>
                         <span>CSS</span>
                         <span>Git</span>
-
                     </div>
 
                 </div>
 
             </div>
 
+            <!-- RIGHT -->
+ <!-- ========================================
+     HERO RIGHT VISUAL
+========================================= -->
 
-            <!-- HERO VISUAL -->
-            <div class="col-lg-5 d-none d-lg-block">
+<div class="col-lg-6">
 
-                <div class="hero-visual">
+    <div class="hero-image-showcase">
 
-                    <div class="developer-card">
+        <div class="hero-image-glow"></div>
 
-                        <div class="developer-card-header">
+        <div class="hero-image-grid"></div>
 
-                            <span class="code-dot"></span>
-
-                            <strong>
-                                Django
-                            </strong>
-
-                        </div>
-
-                        <div class="developer-code">
-
-                            <p>
-                                <span class="code-purple">def</span>
-                                <span class="code-yellow">
-                                    build_solutions
-                                </span>():
-                            </p>
-
-                            <p class="code-indent">
-                                <span class="code-purple">
-                                    return
-                                </span>
-                                [
-                            </p>
-
-                            <p class="code-indent-2">
-                                "Clean code",
-                            </p>
-
-                            <p class="code-indent-2">
-                                "Modern design",
-                            </p>
-
-                            <p class="code-indent-2">
-                                "Scalable apps",
-                            </p>
-
-                            <p class="code-indent-2">
-                                "Happy users"
-                            </p>
-
-                            <p class="code-indent">
-                                ]
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="hero-bee">
-                        🐝
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+        <img
+            src="{% static 'portfolio/img/hero/hero-assets.png' %}"
+            alt="Python and Django development illustration"
+            class="hero-main-image"
+        >
 
     </div>
 
+</div>
+
 </section>
-
-
-<!-- ========================================
-     SELECTED WORK
-========================================= -->
 
 <!-- ========================================
      SELECTED WORK
@@ -298,11 +239,6 @@ TeyiSomadje — Full Stack Web Developer
     </div>
 
 </section>
-<!-- ========================================
-     ABOUT
-     Placeholder for next step
-========================================= -->
-
 <!-- ========================================
      ABOUT
 ========================================= -->
@@ -573,11 +509,6 @@ TeyiSomadje — Full Stack Web Developer
 
 <!-- ========================================
      SERVICES
-     Placeholder for next step
-========================================= -->
-
-<!-- ========================================
-     SERVICES
 ========================================= -->
 
 <section
@@ -727,13 +658,8 @@ TeyiSomadje — Full Stack Web Developer
 
     </div>
 
-</section>>
+</section>
 
-
-<!-- ========================================
-     CONTACT
-     Placeholder for next step
-========================================= -->
 
 <!-- ========================================
      CONTACT
@@ -775,7 +701,7 @@ TeyiSomadje — Full Stack Web Developer
                             <span>→</span>
                         </a>
 
-                        <a href="#" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/teyi12" target="_blank" rel="noopener noreferrer">
                             GitHub
                             <span>→</span>
                         </a>
@@ -807,11 +733,7 @@ TeyiSomadje — Full Stack Web Developer
                     <div class="contact-card">
 
                         <form method="POST">
-                             {% csrf_token %}
-
-                            <form method="POST">
-
-    {% csrf_token %}
+                            {% csrf_token %}
 
 
     <!-- NAME -->
