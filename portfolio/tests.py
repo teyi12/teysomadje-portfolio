@@ -81,6 +81,29 @@ class HomeViewTests(TestCase):
         self.assertContains(response, "This field is required.")
 
     @patch("portfolio.views.urlopen")
+    def test_honeypot_submission_fakes_success_without_calling_brevo(
+        self,
+        mocked_urlopen,
+    ):
+        response = self.client.post(
+            self.url,
+            {
+                "name": "Spam Bot",
+                "email": "bot@example.com",
+                "message": "Automated advertisement.",
+                "website": "https://spam.example.com",
+            },
+            follow=True,
+        )
+
+        self.assertRedirects(response, self.url)
+        mocked_urlopen.assert_not_called()
+        self.assertContains(
+            response,
+            "Your message has been sent successfully.",
+        )
+
+    @patch("portfolio.views.urlopen")
     def test_valid_contact_form_calls_brevo_and_redirects(
         self,
         mocked_urlopen,
