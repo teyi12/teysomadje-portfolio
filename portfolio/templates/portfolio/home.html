@@ -139,12 +139,22 @@ TeyiSomadje — Full Stack Web Developer
                         <!-- IMAGE -->
                         <div class="project-image">
 
-                            {% if project.image %}
+                            {% if project.image_url %}
+
+                                <img
+                                    src="{{ project.image_url }}"
+                                    alt="{{ project.title }}"
+                                    class="project-img"
+                                    loading="lazy"
+                                >
+
+                            {% elif project.image %}
 
                                 <img
                                     src="{{ project.image.url }}"
                                     alt="{{ project.title }}"
                                     class="project-img"
+                                    loading="lazy"
                                 >
 
                             {% else %}
