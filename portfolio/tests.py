@@ -1,7 +1,7 @@
-from smtplib import SMTPException
-from unittest.mock import patch
+import json
+from unittest.mock import MagicMock, patch
+from urllib.error import URLError
 
-from django.core import mail
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
@@ -22,8 +22,10 @@ class ProjectModelTests(TestCase):
 
 
 @override_settings(
-    EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend",
-    DEFAULT_FROM_EMAIL="portfolio@example.com",
+    BREVO_API_URL="https://api.brevo.test/v3/smtp/email",
+    BREVO_API_KEY="test-api-key",
+    BREVO_TIMEOUT=10,
+    DEFAULT_FROM_EMAIL="verified@example.com",
     CONTACT_EMAIL="owner@example.com",
 )
 class HomeViewTests(TestCase):
@@ -63,7 +65,8 @@ class HomeViewTests(TestCase):
         self.assertContains(response, self.featured_project.image_url)
         self.assertContains(response, 'loading="lazy"')
 
-    def test_invalid_contact_form_does_not_send_email(self):
+    @patch("portfolio.views.urlopen")
+    def test_invalid_contact_form_does_not_call_brevo(self, mocked_urlopen):
         response = self.client.post(
             self.url,
             {
@@ -74,10 +77,18 @@ class HomeViewTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(mail.outbox), 0)
+        mocked_urlopen.assert_not_called()
         self.assertContains(response, "This field is required.")
 
-    def test_valid_contact_form_sends_email_and_redirects(self):
+    @patch("portfolio.views.urlopen")
+    def test_valid_contact_form_calls_brevo_and_redirects(
+        self,
+        mocked_urlopen,
+    ):
+        mocked_response = MagicMock()
+        mocked_response.status = 201
+        mocked_urlopen.return_value.__enter__.return_value = mocked_response
+
         response = self.client.post(
             self.url,
             {
@@ -89,20 +100,33 @@ class HomeViewTests(TestCase):
         )
 
         self.assertRedirects(response, self.url)
-        self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, "New portfolio contact")
-        self.assertEqual(mail.outbox[0].reply_to, ["visitor@example.com"])
-        self.assertIn("visitor@example.com", mail.outbox[0].body)
+        mocked_urlopen.assert_called_once()
+        brevo_request = mocked_urlopen.call_args.args[0]
+        payload = json.loads(brevo_request.data.decode("utf-8"))
+
+        self.assertEqual(brevo_request.full_url, "https://api.brevo.test/v3/smtp/email")
+        self.assertEqual(brevo_request.get_method(), "POST")
+        self.assertEqual(brevo_request.headers["Api-key"], "test-api-key")
+        self.assertEqual(payload["sender"]["email"], "verified@example.com")
+        self.assertEqual(payload["to"], [{"email": "owner@example.com"}])
+        self.assertEqual(
+            payload["replyTo"],
+            {"name": "Test Visitor", "email": "visitor@example.com"},
+        )
+        self.assertIn("visitor@example.com", payload["textContent"])
         self.assertContains(
             response,
             "Your message has been sent successfully.",
         )
 
     @patch(
-        "portfolio.views.EmailMessage.send",
-        side_effect=SMTPException("SMTP unavailable"),
+        "portfolio.views.urlopen",
+        side_effect=URLError("Brevo unavailable"),
     )
-    def test_email_failure_keeps_form_and_shows_error(self, mocked_send):
+    def test_brevo_failure_keeps_form_and_shows_error(
+        self,
+        mocked_urlopen,
+    ):
         response = self.client.post(
             self.url,
             {
@@ -117,4 +141,4 @@ class HomeViewTests(TestCase):
             response,
             "Your message could not be sent. Please try again later.",
         )
-        mocked_send.assert_called_once_with(fail_silently=False)
+        mocked_urlopen.assert_called_once()
