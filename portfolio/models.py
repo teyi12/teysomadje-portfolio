@@ -55,7 +55,21 @@ class Project(models.Model):
 
     def technology_list(self):
         return [
-        technology.strip()
-        for technology in self.technologies.split(",")
-        if technology.strip()
-    ]
+            technology.strip()
+            for technology in self.technologies.split(",")
+            if technology.strip()
+        ]
+
+
+class ContactSubmission(models.Model):
+    ip_hash = models.CharField(
+        max_length=64,
+        db_index=True,
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+    )
+
+    class Meta:
+        ordering = ["-created_at"]
