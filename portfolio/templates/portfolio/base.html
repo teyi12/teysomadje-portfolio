@@ -1,22 +1,57 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="description"
-        content="TeyiSomadje — Full Stack Web Developer. I build modern, scalable web applications with Python and Django."
-    >
 
     <title>
         {% block title %}
-        TeyiSomadje — Full Stack Web Developer
+        {{ seo_title|default:"Teyi Somadje — Full Stack Web Developer" }}
         {% endblock %}
     </title>
+
+    <meta name="description" content="{{ seo_description }}">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Teyi Guillaume Lawson-Somadje">
+    <meta name="theme-color" content="#0b0b0b">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="TeyiSomadje">
+    <meta property="og:title" content="{{ seo_title }}">
+    <meta property="og:description" content="{{ seo_description }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:image" content="{{ seo_image_url }}">
+    <meta property="og:image:alt" content="Python and Django development illustration">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ seo_title }}">
+    <meta name="twitter:description" content="{{ seo_description }}">
+    <meta name="twitter:image" content="{{ seo_image_url }}">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Teyi Guillaume Lawson-Somadje",
+        "url": "{{ canonical_url }}",
+        "image": "{{ seo_image_url }}",
+        "jobTitle": "Full Stack Web Developer",
+        "sameAs": [
+            "https://github.com/teyi12",
+            "https://www.linkedin.com/in/teyi-guillaume-lawson-somadje-5706a4193/"
+        ],
+        "knowsAbout": [
+            "Python",
+            "Django",
+            "PostgreSQL",
+            "Full Stack Web Development"
+        ]
+    }
+    </script>
 
     <!-- Bootstrap 5 -->
     <link
