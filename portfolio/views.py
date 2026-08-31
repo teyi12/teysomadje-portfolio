@@ -67,6 +67,14 @@ def home(request):
         form = ContactForm(request.POST)
 
         if form.is_valid():
+            if form.cleaned_data["website"]:
+                logger.info("Contact form honeypot rejected a submission.")
+                messages.success(
+                    request,
+                    "Your message has been sent successfully.",
+                )
+                return redirect("home")
+
             try:
                 send_contact_email(
                     name=form.cleaned_data["name"],
