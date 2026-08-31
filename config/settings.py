@@ -153,6 +153,11 @@ CONTACT_EMAIL = os.getenv(
     "teyi@localhost",
 )
 
+CONTACT_RATE_LIMIT = int(os.getenv("CONTACT_RATE_LIMIT", "5"))
+CONTACT_RATE_WINDOW_SECONDS = int(
+    os.getenv("CONTACT_RATE_WINDOW_SECONDS", "3600")
+)
+
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
