@@ -143,14 +143,21 @@ EMAIL_BACKEND = os.getenv(
     "django.core.mail.backends.console.EmailBackend",
 )
 
+EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True").lower() == "true"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
+EMAIL_TIMEOUT = int(os.getenv("EMAIL_TIMEOUT", "10"))
+
 DEFAULT_FROM_EMAIL = os.getenv(
     "DEFAULT_FROM_EMAIL",
-    "portfolio@localhost",
+    EMAIL_HOST_USER or "portfolio@localhost",
 )
 
 CONTACT_EMAIL = os.getenv(
     "CONTACT_EMAIL",
-    "teyi@localhost",
+    EMAIL_HOST_USER or "teyi@localhost",
 )
 
 MEDIA_URL = "/media/"
