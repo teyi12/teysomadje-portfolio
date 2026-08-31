@@ -1,3 +1,6 @@
+from smtplib import SMTPException
+from unittest.mock import patch
+
 from django.core import mail
 from django.test import TestCase, override_settings
 from django.urls import reverse
@@ -87,12 +90,31 @@ class HomeViewTests(TestCase):
 
         self.assertRedirects(response, self.url)
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(
-            mail.outbox[0].subject,
-            "Portfolio contact from Test Visitor",
-        )
+        self.assertEqual(mail.outbox[0].subject, "New portfolio contact")
+        self.assertEqual(mail.outbox[0].reply_to, ["visitor@example.com"])
         self.assertIn("visitor@example.com", mail.outbox[0].body)
         self.assertContains(
             response,
             "Your message has been sent successfully.",
         )
+
+    @patch(
+        "portfolio.views.EmailMessage.send",
+        side_effect=SMTPException("SMTP unavailable"),
+    )
+    def test_email_failure_keeps_form_and_shows_error(self, mocked_send):
+        response = self.client.post(
+            self.url,
+            {
+                "name": "Test Visitor",
+                "email": "visitor@example.com",
+                "message": "Please contact me.",
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response,
+            "Your message could not be sent. Please try again later.",
+        )
+        mocked_send.assert_called_once_with(fail_silently=False)
