@@ -22,11 +22,23 @@ class ContactForm(forms.Form):
     )
 
     message = forms.CharField(
+        max_length=5000,
         widget=forms.Textarea(
             attrs={
                 "class": "form-control",
                 "rows": 5,
                 "placeholder": "Tell me about your project...",
+            }
+        ),
+    )
+
+    website = forms.CharField(
+        required=False,
+        label="Leave this field empty",
+        widget=forms.HiddenInput(
+            attrs={
+                "autocomplete": "off",
+                "tabindex": "-1",
             }
         ),
     )
