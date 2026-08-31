@@ -135,22 +135,29 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
-# Transactional email (Brevo API over HTTPS)
+# Email
+# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
-BREVO_API_URL = os.getenv(
-    "BREVO_API_URL",
-    "https://api.brevo.com/v3/smtp/email",
+EMAIL_BACKEND = os.getenv(
+    "EMAIL_BACKEND",
+    "django.core.mail.backends.console.EmailBackend",
 )
-BREVO_API_KEY = os.getenv("BREVO_API_KEY", "")
-BREVO_TIMEOUT = int(os.getenv("BREVO_TIMEOUT", "10"))
+
+EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True").lower() == "true"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
+EMAIL_TIMEOUT = int(os.getenv("EMAIL_TIMEOUT", "10"))
 
 DEFAULT_FROM_EMAIL = os.getenv(
     "DEFAULT_FROM_EMAIL",
-    "portfolio@localhost",
+    EMAIL_HOST_USER or "portfolio@localhost",
 )
+
 CONTACT_EMAIL = os.getenv(
     "CONTACT_EMAIL",
-    "teyi@localhost",
+    EMAIL_HOST_USER or "teyi@localhost",
 )
 
 MEDIA_URL = "/media/"
