@@ -5,7 +5,7 @@ from urllib.error import URLError
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
-from .models import Project
+from .models import ContactSubmission, Project
 
 
 class ProjectModelTests(TestCase):
@@ -27,6 +27,8 @@ class ProjectModelTests(TestCase):
     BREVO_TIMEOUT=10,
     DEFAULT_FROM_EMAIL="verified@example.com",
     CONTACT_EMAIL="owner@example.com",
+    CONTACT_RATE_LIMIT=2,
+    CONTACT_RATE_WINDOW_SECONDS=3600,
 )
 class HomeViewTests(TestCase):
     def setUp(self):
@@ -98,6 +100,7 @@ class HomeViewTests(TestCase):
 
         self.assertRedirects(response, self.url)
         mocked_urlopen.assert_not_called()
+        self.assertEqual(ContactSubmission.objects.count(), 0)
         self.assertContains(
             response,
             "Your message has been sent successfully.",
@@ -140,6 +143,46 @@ class HomeViewTests(TestCase):
         self.assertContains(
             response,
             "Your message has been sent successfully.",
+        )
+
+    @patch("portfolio.views.urlopen")
+    def test_rate_limit_blocks_third_submission_from_same_ip(
+        self,
+        mocked_urlopen,
+    ):
+        mocked_response = MagicMock()
+        mocked_response.status = 201
+        mocked_urlopen.return_value.__enter__.return_value = mocked_response
+        form_data = {
+            "name": "Test Visitor",
+            "email": "visitor@example.com",
+            "message": "Please contact me.",
+        }
+
+        for _ in range(2):
+            response = self.client.post(
+                self.url,
+                form_data,
+                REMOTE_ADDR="203.0.113.10",
+            )
+            self.assertEqual(response.status_code, 302)
+
+        response = self.client.post(
+            self.url,
+            form_data,
+            REMOTE_ADDR="203.0.113.10",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(mocked_urlopen.call_count, 2)
+        self.assertEqual(ContactSubmission.objects.count(), 2)
+        self.assertNotIn(
+            "203.0.113.10",
+            ContactSubmission.objects.first().ip_hash,
+        )
+        self.assertContains(
+            response,
+            "Too many messages have been sent. Please try again later.",
         )
 
     @patch(
