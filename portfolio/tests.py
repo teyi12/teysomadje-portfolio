@@ -55,6 +55,52 @@ class HomeViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "portfolio/home.html")
 
+    def test_home_page_contains_canonical_and_social_metadata(self):
+        response = self.client.get(
+            self.url,
+            secure=True,
+        )
+
+        self.assertContains(
+            response,
+            '<link rel="canonical" href="https://testserver/">',
+            html=True,
+        )
+        self.assertContains(
+            response,
+            '<meta property="og:type" content="website">',
+            html=True,
+        )
+        self.assertContains(
+            response,
+            'https://testserver/static/portfolio/img/hero/hero-assets.png',
+        )
+        self.assertContains(response, '"@type": "Person"')
+
+    def test_robots_txt_allows_crawling_and_links_sitemap(self):
+        response = self.client.get(
+            reverse("robots_txt"),
+            secure=True,
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "text/plain")
+        self.assertContains(response, "User-agent: *")
+        self.assertContains(
+            response,
+            "Sitemap: https://testserver/sitemap.xml",
+        )
+
+    def test_sitemap_contains_home_page(self):
+        response = self.client.get(
+            reverse("sitemap"),
+            secure=True,
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "application/xml")
+        self.assertContains(response, "<loc>https://testserver/</loc>")
+
     def test_home_page_displays_only_featured_projects(self):
         response = self.client.get(self.url)
 
