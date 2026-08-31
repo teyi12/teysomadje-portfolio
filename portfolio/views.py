@@ -1,9 +1,10 @@
+import json
 import logging
-from smtplib import SMTPException
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 from django.conf import settings
 from django.contrib import messages
-from django.core.mail import BadHeaderError, EmailMessage
 from django.shortcuts import redirect, render
 
 from .forms import ContactForm
@@ -13,6 +14,52 @@ from .models import Project
 logger = logging.getLogger(__name__)
 
 
+class ContactEmailError(Exception):
+    """Raised when a contact message cannot be delivered."""
+
+
+def send_contact_email(*, name, email, message):
+    if not settings.BREVO_API_KEY:
+        raise ContactEmailError("BREVO_API_KEY is not configured.")
+
+    payload = {
+        "sender": {
+            "name": "Teyi Somadje Portfolio",
+            "email": settings.DEFAULT_FROM_EMAIL,
+        },
+        "to": [{"email": settings.CONTACT_EMAIL}],
+        "replyTo": {"name": name, "email": email},
+        "subject": "New portfolio contact",
+        "textContent": (
+            f"Name: {name}\n"
+            f"Email: {email}\n\n"
+            f"Message:\n{message}"
+        ),
+    }
+    brevo_request = Request(
+        settings.BREVO_API_URL,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "accept": "application/json",
+            "api-key": settings.BREVO_API_KEY,
+            "content-type": "application/json",
+        },
+        method="POST",
+    )
+
+    try:
+        with urlopen(
+            brevo_request,
+            timeout=settings.BREVO_TIMEOUT,
+        ) as response:
+            if not 200 <= response.status < 300:
+                raise ContactEmailError(
+                    f"Brevo returned HTTP {response.status}."
+                )
+    except (HTTPError, URLError, TimeoutError, OSError) as exc:
+        raise ContactEmailError("Brevo request failed.") from exc
+
+
 def home(request):
     projects = Project.objects.filter(featured=True)
 
@@ -20,25 +67,13 @@ def home(request):
         form = ContactForm(request.POST)
 
         if form.is_valid():
-            name = form.cleaned_data["name"]
-            email = form.cleaned_data["email"]
-            message = form.cleaned_data["message"]
-
-            contact_email = EmailMessage(
-                subject="New portfolio contact",
-                body=(
-                    f"Name: {name}\n"
-                    f"Email: {email}\n\n"
-                    f"Message:\n{message}"
-                ),
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                to=[settings.CONTACT_EMAIL],
-                reply_to=[email],
-            )
-
             try:
-                contact_email.send(fail_silently=False)
-            except (BadHeaderError, SMTPException, OSError):
+                send_contact_email(
+                    name=form.cleaned_data["name"],
+                    email=form.cleaned_data["email"],
+                    message=form.cleaned_data["message"],
+                )
+            except ContactEmailError:
                 logger.exception("Portfolio contact email could not be sent.")
                 messages.error(
                     request,
