@@ -17,6 +17,11 @@ class Project(models.Model):
         null=True,
     )
 
+    image_url = models.URLField(
+        blank=True,
+        help_text="External image URL used in production.",
+    )
+
     technologies = models.CharField(
         max_length=250,
         help_text="Example: Django, Bootstrap, PostgreSQL",
