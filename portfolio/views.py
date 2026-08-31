@@ -1,14 +1,18 @@
+import hashlib
+import hmac
 import json
 import logging
+from datetime import timedelta
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect, render
+from django.utils import timezone
 
 from .forms import ContactForm
-from .models import Project
+from .models import ContactSubmission, Project
 
 
 logger = logging.getLogger(__name__)
@@ -60,6 +64,43 @@ def send_contact_email(*, name, email, message):
         raise ContactEmailError("Brevo request failed.") from exc
 
 
+def get_client_ip(request):
+    forwarded_for = request.headers.get("X-Forwarded-For", "")
+    if forwarded_for:
+        return forwarded_for.split(",", 1)[0].strip()
+
+    return request.META.get("REMOTE_ADDR", "unknown")
+
+
+def contact_rate_limit_reached(request):
+    limit = settings.CONTACT_RATE_LIMIT
+    if limit <= 0:
+        return False
+
+    cutoff = timezone.now() - timedelta(
+        seconds=settings.CONTACT_RATE_WINDOW_SECONDS
+    )
+    ContactSubmission.objects.filter(created_at__lt=cutoff).delete()
+
+    client_ip = get_client_ip(request)
+    ip_hash = hmac.new(
+        str(settings.SECRET_KEY).encode("utf-8"),
+        client_ip.encode("utf-8"),
+        hashlib.sha256,
+    ).hexdigest()
+
+    recent_submissions = ContactSubmission.objects.filter(
+        ip_hash=ip_hash,
+        created_at__gte=cutoff,
+    ).count()
+
+    if recent_submissions >= limit:
+        return True
+
+    ContactSubmission.objects.create(ip_hash=ip_hash)
+    return False
+
+
 def home(request):
     projects = Project.objects.filter(featured=True)
 
@@ -75,24 +116,32 @@ def home(request):
                 )
                 return redirect("home")
 
-            try:
-                send_contact_email(
-                    name=form.cleaned_data["name"],
-                    email=form.cleaned_data["email"],
-                    message=form.cleaned_data["message"],
-                )
-            except ContactEmailError:
-                logger.exception("Portfolio contact email could not be sent.")
+            if contact_rate_limit_reached(request):
                 messages.error(
                     request,
-                    "Your message could not be sent. Please try again later.",
+                    "Too many messages have been sent. Please try again later.",
                 )
             else:
-                messages.success(
-                    request,
-                    "Your message has been sent successfully.",
-                )
-                return redirect("home")
+                try:
+                    send_contact_email(
+                        name=form.cleaned_data["name"],
+                        email=form.cleaned_data["email"],
+                        message=form.cleaned_data["message"],
+                    )
+                except ContactEmailError:
+                    logger.exception(
+                        "Portfolio contact email could not be sent."
+                    )
+                    messages.error(
+                        request,
+                        "Your message could not be sent. Please try again later.",
+                    )
+                else:
+                    messages.success(
+                        request,
+                        "Your message has been sent successfully.",
+                    )
+                    return redirect("home")
 
     else:
         form = ContactForm()
