@@ -1,10 +1,16 @@
+import logging
+from smtplib import SMTPException
+
 from django.conf import settings
 from django.contrib import messages
-from django.core.mail import send_mail
+from django.core.mail import BadHeaderError, EmailMessage
 from django.shortcuts import redirect, render
 
 from .forms import ContactForm
 from .models import Project
+
+
+logger = logging.getLogger(__name__)
 
 
 def home(request):
@@ -18,24 +24,32 @@ def home(request):
             email = form.cleaned_data["email"]
             message = form.cleaned_data["message"]
 
-            send_mail(
-                subject=f"Portfolio contact from {name}",
-                message=(
+            contact_email = EmailMessage(
+                subject="New portfolio contact",
+                body=(
                     f"Name: {name}\n"
                     f"Email: {email}\n\n"
                     f"Message:\n{message}"
                 ),
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[settings.CONTACT_EMAIL],
-                fail_silently=False,
+                to=[settings.CONTACT_EMAIL],
+                reply_to=[email],
             )
 
-            messages.success(
-                request,
-                "Your message has been sent successfully."
-            )
-
-            return redirect("home")
+            try:
+                contact_email.send(fail_silently=False)
+            except (BadHeaderError, SMTPException, OSError):
+                logger.exception("Portfolio contact email could not be sent.")
+                messages.error(
+                    request,
+                    "Your message could not be sent. Please try again later.",
+                )
+            else:
+                messages.success(
+                    request,
+                    "Your message has been sent successfully.",
+                )
+                return redirect("home")
 
     else:
         form = ContactForm()
