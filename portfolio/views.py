@@ -8,7 +8,10 @@ from urllib.request import Request, urlopen
 
 from django.conf import settings
 from django.contrib import messages
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.templatetags.static import static
+from django.urls import reverse
 from django.utils import timezone
 
 from .forms import ContactForm
@@ -101,6 +104,16 @@ def contact_rate_limit_reached(request):
     return False
 
 
+def robots_txt(request):
+    sitemap_url = request.build_absolute_uri(reverse("sitemap"))
+    content = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        f"Sitemap: {sitemap_url}\n"
+    )
+    return HttpResponse(content, content_type="text/plain")
+
+
 def home(request):
     projects = Project.objects.filter(featured=True)
 
@@ -150,7 +163,16 @@ def home(request):
         request,
         "portfolio/home.html",
         {
+            "canonical_url": request.build_absolute_uri(reverse("home")),
             "form": form,
             "projects": projects,
+            "seo_description": (
+                "Full Stack Web Developer building modern, scalable web "
+                "applications with Python, Django and PostgreSQL."
+            ),
+            "seo_image_url": request.build_absolute_uri(
+                static("portfolio/img/hero/hero-assets.png")
+            ),
+            "seo_title": "Teyi Somadje — Full Stack Web Developer",
         },
     )
