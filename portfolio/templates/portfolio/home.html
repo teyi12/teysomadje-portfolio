@@ -1,8 +1,8 @@
 {% extends "portfolio/base.html" %}
-{% load static %}
+{% load i18n static %}
 
 {% block title %}
-TeyiSomadje — Full Stack Web Developer
+{{ seo_title }}
 {% endblock %}
 
 {% block content %}
@@ -24,31 +24,28 @@ TeyiSomadje — Full Stack Web Developer
 
                     <div class="hero-badge">
                         <span class="hero-badge-dot"></span>
-                        FULL STACK WEB DEVELOPER
+                        {% translate "FULL STACK WEB DEVELOPER" %}
                     </div>
 
                     <h1 class="hero-title">
-                        I build modern,
-                        <span>scalable</span>
-                        web applications.
+                        {% translate "I build modern," %}
+                        <span>{% translate "scalable" %}</span>
+                        {% translate "web applications." %}
                     </h1>
 
                     <p class="hero-description">
-                        I design and develop high-quality digital experiences
-                        with Python, Django and modern web technologies.
-                        From idea to deployment, I turn complex problems into
-                        simple, elegant solutions.
+                        {% translate "I design and develop high-quality digital experiences with Python, Django and modern web technologies. From idea to deployment, I turn complex problems into simple, elegant solutions." %}
                     </p>
 
                     <div class="hero-actions">
 
                         <a href="#projects" class="hero-btn hero-btn-primary">
-                            View my work
+                            {% translate "View my work" %}
                             <span>→</span>
                         </a>
 
                         <a href="#contact" class="hero-btn hero-btn-secondary">
-                            Contact me
+                            {% translate "Contact me" %}
                             <span>→</span>
                         </a>
 
@@ -82,7 +79,7 @@ TeyiSomadje — Full Stack Web Developer
 
         <img
             src="{% static 'portfolio/img/hero/hero-assets.png' %}"
-            alt="Python and Django development illustration"
+            alt="{% translate 'Python and Django development illustration' %}"
             class="hero-main-image"
         >
 
@@ -111,16 +108,15 @@ TeyiSomadje — Full Stack Web Developer
         <div class="section-heading text-center">
 
             <p class="section-eyebrow">
-                SELECTED WORK
+                {% translate "SELECTED WORK" %}
             </p>
 
             <h2>
-                Featured Projects
+                {% translate "Featured Projects" %}
             </h2>
 
             <p>
-                A selection of web applications built with
-                Django and modern web technologies.
+                {% translate "A selection of web applications built with Django and modern web technologies." %}
             </p>
 
         </div>
@@ -143,7 +139,7 @@ TeyiSomadje — Full Stack Web Developer
 
                                 <img
                                     src="{{ project.image_url }}"
-                                    alt="{{ project.title }}"
+                                    alt="{{ project.localized_title }}"
                                     class="project-img"
                                     loading="lazy"
                                 >
@@ -152,7 +148,7 @@ TeyiSomadje — Full Stack Web Developer
 
                                 <img
                                     src="{{ project.image.url }}"
-                                    alt="{{ project.title }}"
+                                    alt="{{ project.localized_title }}"
                                     class="project-img"
                                     loading="lazy"
                                 >
@@ -160,7 +156,7 @@ TeyiSomadje — Full Stack Web Developer
                             {% else %}
 
                                 <div class="project-image-placeholder">
-                                    {{ project.title }}
+                                    {{ project.localized_title }}
                                 </div>
 
                             {% endif %}
@@ -187,13 +183,13 @@ TeyiSomadje — Full Stack Web Developer
 
                             <!-- TITLE -->
                             <h3>
-                                {{ project.title }}
+                                {{ project.localized_title }}
                             </h3>
 
 
                             <!-- DESCRIPTION -->
                             <p>
-                                {{ project.description }}
+                                {{ project.localized_description }}
                             </p>
 
 
@@ -222,7 +218,7 @@ TeyiSomadje — Full Stack Web Developer
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        Live Demo
+                                        {% translate "Live Demo" %}
                                         <span>→</span>
                                     </a>
 
@@ -241,7 +237,7 @@ TeyiSomadje — Full Stack Web Developer
                 <div class="col-12">
 
                     <p class="text-center text-secondary">
-                        No featured projects yet.
+                        {% translate "No featured projects yet." %}
                     </p>
 
                 </div>
@@ -272,7 +268,7 @@ TeyiSomadje — Full Stack Web Developer
                     <div class="about-portrait-glow"></div>
                     <img
                         src="{% static 'portfolio/img/teyi-portrait.webp' %}"
-                        alt="Portrait of Teyi Guillaume Lawson-Somadje"
+                        alt="{% translate 'Portrait of Teyi Guillaume Lawson-Somadje' %}"
                         class="about-portrait-image"
                         width="720"
                         height="720"
@@ -285,44 +281,37 @@ TeyiSomadje — Full Stack Web Developer
             <div class="col-lg-7">
 
                 <div class="about-label">
-                    ABOUT ME
+                    {% translate "ABOUT ME" %}
                 </div>
 
                 <h2 class="about-title">
-                    Building digital products
-                    with code, strategy
-                    and purpose.
+                    {% translate "Building digital products with code, strategy and purpose." %}
                 </h2>
 
                 <div class="about-content">
 
                     <p class="about-lead">
-                        I'm a Full Stack Developer focused on building
-                        modern, scalable and user-centered web applications.
+                        {% translate "I'm a Full Stack Developer focused on building modern, scalable and user-centered web applications." %}
                     </p>
 
                     <p>
-                        My core stack is Python and Django, combined with
-                        Bootstrap, databases, APIs and modern frontend
-                        technologies.
+                        {% translate "My core stack is Python and Django, combined with Bootstrap, databases, APIs and modern frontend technologies." %}
                     </p>
 
                     <p>
-                        I enjoy turning ideas into real digital products —
-                        from architecture and backend development to
-                        responsive interfaces and deployment.
+                        {% translate "I enjoy turning ideas into real digital products — from architecture and backend development to responsive interfaces and deployment." %}
                     </p>
 
                     <div class="about-stats">
 
                         <div class="about-stat">
                             <strong>Python</strong>
-                            <span>Backend</span>
+                            <span>{% translate "Backend" %}</span>
                         </div>
 
                         <div class="about-stat">
                             <strong>Django</strong>
-                            <span>Web Apps</span>
+                            <span>{% translate "Web Apps" %}</span>
                         </div>
 
                         <div class="about-stat">
@@ -357,17 +346,15 @@ TeyiSomadje — Full Stack Web Developer
         <div class="section-heading text-center">
 
             <p class="section-eyebrow">
-                TECH STACK
+                {% translate "TECH STACK" %}
             </p>
 
             <h2>
-                Technologies I work with
+                {% translate "Technologies I work with" %}
             </h2>
 
             <p>
-                A modern development stack for building
-                scalable web applications from backend
-                architecture to production-ready interfaces.
+                {% translate "A modern development stack for building scalable web applications from backend architecture to production-ready interfaces." %}
             </p>
 
         </div>
@@ -386,12 +373,11 @@ TeyiSomadje — Full Stack Web Developer
                     </div>
 
                     <h3>
-                        Backend
+                        {% translate "Backend" %}
                     </h3>
 
                     <p>
-                        Server-side development, application
-                        architecture and REST APIs.
+                        {% translate "Server-side development, application architecture and REST APIs." %}
                     </p>
 
                     <div class="skills-tags">
@@ -416,12 +402,11 @@ TeyiSomadje — Full Stack Web Developer
                     </div>
 
                     <h3>
-                        Frontend
+                        {% translate "Frontend" %}
                     </h3>
 
                     <p>
-                        Responsive and accessible interfaces
-                        for modern web applications.
+                        {% translate "Responsive and accessible interfaces for modern web applications." %}
                     </p>
 
                     <div class="skills-tags">
@@ -446,12 +431,11 @@ TeyiSomadje — Full Stack Web Developer
                     </div>
 
                     <h3>
-                        Database
+                        {% translate "Database" %}
                     </h3>
 
                     <p>
-                        Data modeling and persistence for
-                        reliable web applications.
+                        {% translate "Data modeling and persistence for reliable web applications." %}
                     </p>
 
                     <div class="skills-tags">
@@ -474,12 +458,11 @@ TeyiSomadje — Full Stack Web Developer
                     </div>
 
                     <h3>
-                        Tools & DevOps
+                        {% translate "Tools & DevOps" %}
                     </h3>
 
                     <p>
-                        Development workflows, version control,
-                        containers and Linux environments.
+                        {% translate "Development workflows, version control, containers and Linux environments." %}
                     </p>
 
                     <div class="skills-tags">
@@ -505,12 +488,11 @@ TeyiSomadje — Full Stack Web Developer
                     </div>
 
                     <h3>
-                        Platforms & Integrations
+                        {% translate "Platforms & Integrations" %}
                     </h3>
 
                     <p>
-                        External services, payments, media
-                        management and commerce platforms.
+                        {% translate "External services, payments, media management and commerce platforms." %}
                     </p>
 
                     <div class="skills-tags">
@@ -544,17 +526,15 @@ TeyiSomadje — Full Stack Web Developer
         <div class="section-heading text-center">
 
             <p class="section-eyebrow">
-                SERVICES
+                {% translate "SERVICES" %}
             </p>
 
             <h2>
-                What I can build for you
+                {% translate "What I can build for you" %}
             </h2>
 
             <p>
-                From backend architecture to polished interfaces,
-                I build complete digital products with a focus on
-                performance, scalability and maintainability.
+                {% translate "From backend architecture to polished interfaces, I build complete digital products with a focus on performance, scalability and maintainability." %}
             </p>
 
         </div>
@@ -572,13 +552,11 @@ TeyiSomadje — Full Stack Web Developer
                     </div>
 
                     <h3>
-                        Web Application Development
+                        {% translate "Web Application Development" %}
                     </h3>
 
                     <p>
-                        Modern and scalable web applications built
-                        with Django, Bootstrap and reliable backend
-                        architecture.
+                        {% translate "Modern and scalable web applications built with Django, Bootstrap and reliable backend architecture." %}
                     </p>
 
                     <div class="service-tags">
@@ -601,13 +579,11 @@ TeyiSomadje — Full Stack Web Developer
                     </div>
 
                     <h3>
-                        Backend & API Development
+                        {% translate "Backend & API Development" %}
                     </h3>
 
                     <p>
-                        Secure backend systems, REST APIs,
-                        authentication, business logic
-                        and database integrations.
+                        {% translate "Secure backend systems, REST APIs, authentication, business logic and database integrations." %}
                     </p>
 
                     <div class="service-tags">
@@ -630,13 +606,11 @@ TeyiSomadje — Full Stack Web Developer
                     </div>
 
                     <h3>
-                        E-commerce & Platforms
+                        {% translate "E-commerce & Platforms" %}
                     </h3>
 
                     <p>
-                        Custom commerce experiences with product
-                        management, payments, customer flows
-                        and administration tools.
+                        {% translate "Custom commerce experiences with product management, payments, customer flows and administration tools." %}
                     </p>
 
                     <div class="service-tags">
@@ -659,13 +633,11 @@ TeyiSomadje — Full Stack Web Developer
                     </div>
 
                     <h3>
-                        Product & Technical Consulting
+                        {% translate "Product & Technical Consulting" %}
                     </h3>
 
                     <p>
-                        Technical guidance for turning an idea
-                        into a structured, maintainable
-                        and scalable digital product.
+                        {% translate "Technical guidance for turning an idea into a structured, maintainable and scalable digital product." %}
                     </p>
 
                     <div class="service-tags">
@@ -703,24 +675,22 @@ TeyiSomadje — Full Stack Web Developer
                 <div class="col-lg-6">
 
                     <p class="section-eyebrow">
-                        CONTACT
+                        {% translate "CONTACT" %}
                     </p>
 
                     <h2 class="contact-title">
-                        Let's build something
-                        <span>great together.</span>
+                        {% translate "Let's build something" %}
+                        <span>{% translate "great together." %}</span>
                     </h2>
 
                     <p class="contact-description">
-                        Have a project, an idea or a technical challenge?
-                        Let's talk about how I can help turn it into
-                        a modern and scalable digital product.
+                        {% translate "Have a project, an idea or a technical challenge? Let's talk about how I can help turn it into a modern and scalable digital product." %}
                     </p>
 
                     <div class="contact-links">
 
-                        <a href="mailto:teyi9lawson9@gmail.com">
-                            Email
+                        <a href="mailto:{{ contact_email }}">
+                            {% translate "Email" %}
                             <span>→</span>
                         </a>
 
@@ -767,7 +737,7 @@ TeyiSomadje — Full Stack Web Developer
             for="{{ form.name.id_for_label }}"
             class="form-label"
         >
-            Name
+            {{ form.name.label }}
         </label>
 
         {{ form.name }}
@@ -790,7 +760,7 @@ TeyiSomadje — Full Stack Web Developer
             for="{{ form.email.id_for_label }}"
             class="form-label"
         >
-            Email
+            {{ form.email.label }}
         </label>
 
         {{ form.email }}
@@ -813,7 +783,7 @@ TeyiSomadje — Full Stack Web Developer
             for="{{ form.message.id_for_label }}"
             class="form-label"
         >
-            Message
+            {{ form.message.label }}
         </label>
 
         {{ form.message }}
@@ -833,7 +803,7 @@ TeyiSomadje — Full Stack Web Developer
         type="submit"
         class="btn btn-primary contact-submit"
     >
-        Send message
+        {% translate "Send message" %}
         <span>→</span>
     </button>
 

@@ -1,7 +1,7 @@
-{% load static %}
+{% load i18n static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ request.LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +18,19 @@
     <meta name="author" content="Teyi Guillaume Lawson-Somadje">
     <meta name="theme-color" content="#0b0b0b">
     <link rel="canonical" href="{{ canonical_url }}">
+    {% for code, language in language_urls.items %}
+    <link rel="alternate" hreflang="{{ code }}" href="{{ language.url }}">
+    {% endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ language_urls.en.url }}">
 
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_US">
+    <meta property="og:locale" content="{% if request.LANGUAGE_CODE == 'de' %}de_DE{% elif request.LANGUAGE_CODE == 'fr' %}fr_FR{% else %}en_US{% endif %}">
     <meta property="og:site_name" content="TeyiSomadje">
     <meta property="og:title" content="{{ seo_title }}">
     <meta property="og:description" content="{{ seo_description }}">
     <meta property="og:url" content="{{ canonical_url }}">
     <meta property="og:image" content="{{ seo_image_url }}">
-    <meta property="og:image:alt" content="Python and Django development illustration">
+    <meta property="og:image:alt" content="{% translate 'Python and Django development illustration' %}">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ seo_title }}">
@@ -40,7 +44,7 @@
         "name": "Teyi Guillaume Lawson-Somadje",
         "url": "{{ canonical_url }}",
         "image": "{{ seo_image_url }}",
-        "jobTitle": "Full Stack Web Developer",
+        "jobTitle": "{% translate 'Full Stack Web Developer' %}",
         "sameAs": [
             "https://github.com/teyi12",
             "https://www.linkedin.com/in/teyi-guillaume-lawson-somadje-5706a4193/"
@@ -191,7 +195,7 @@
                                 class="nav-link"
                                 href="#projects"
                             >
-                                Work
+                                {% translate "Work" %}
                             </a>
                         </li>
 
@@ -200,7 +204,7 @@
                                 class="nav-link"
                                 href="#about"
                             >
-                                About
+                                {% translate "About" %}
                             </a>
                         </li>
 
@@ -209,7 +213,7 @@
         class="nav-link"
         href="#stack"
     >
-        Stack
+        {% translate "Stack" %}
     </a>
 </li>
 
@@ -218,7 +222,7 @@
                                 class="nav-link"
                                 href="#services"
                             >
-                                Services
+                                {% translate "Services" %}
                             </a>
                         </li>
 
@@ -227,19 +231,33 @@
                                 class="nav-link"
                                 href="#contact"
                             >
-                                Contact
+                                {% translate "Contact" %}
                             </a>
                         </li>
 
                     </ul>
 
 
+                    <div class="language-switcher ms-lg-4 mt-3 mt-lg-0" aria-label="{% translate 'Language selector' %}">
+                        {% for code, language in language_urls.items %}
+                            <a
+                                href="{{ language.url }}"
+                                lang="{{ code }}"
+                                hreflang="{{ code }}"
+                                class="{% if request.LANGUAGE_CODE == code %}active{% endif %}"
+                                aria-label="{{ language.name }}"
+                            >
+                                {{ code|upper }}
+                            </a>
+                        {% endfor %}
+                    </div>
+
                     <!-- CTA -->
                     <a
                         href="#contact"
                         class="nav-cta ms-lg-4 mt-3 mt-lg-0"
                     >
-                        Let's talk
+                        {% translate "Let's talk" %}
                     </a>
 
                 </div>
@@ -281,16 +299,15 @@
             <div>
 
                 <p class="footer-eyebrow">
-                    LET'S BUILD
+                    {% translate "LET'S BUILD" %}
                 </p>
 
                 <h2>
-                    Have a project in mind?
+                    {% translate "Have a project in mind?" %}
                 </h2>
 
                 <p>
-                    Let's discuss how I can help turn your idea
-                    into a modern, scalable digital product.
+                    {% translate "Let's discuss how I can help turn your idea into a modern, scalable digital product." %}
                 </p>
 
             </div>
@@ -301,7 +318,7 @@
                     href="#contact"
                     class="footer-cta-button"
                 >
-                    Get in touch
+                    {% translate "Get in touch" %}
                     <span>→</span>
                 </a>
 
@@ -394,8 +411,7 @@
                 </a>
 
                 <p>
-                    Full Stack Web Developer building modern
-                    web applications with Python and Django.
+                    {% translate "Full Stack Web Developer building modern web applications with Python and Django." %}
                 </p>
 
             </div>
@@ -405,27 +421,27 @@
             <div class="footer-column">
 
                 <h3>
-                    Navigation
+                    {% translate "Navigation" %}
                 </h3>
 
                 <a href="#projects">
-                    Work
+                    {% translate "Work" %}
                 </a>
 
                 <a href="#about">
-                    About
+                    {% translate "About" %}
                 </a>
 
                 <a href="#stack">
-                    Stack
+                    {% translate "Stack" %}
                 </a>
 
                 <a href="#services">
-                    Services
+                    {% translate "Services" %}
                 </a>
 
                 <a href="#contact">
-                    Contact
+                    {% translate "Contact" %}
                 </a>
 
             </div>
@@ -435,7 +451,7 @@
             <div class="footer-column">
 
                 <h3>
-                    Connect
+                    {% translate "Connect" %}
                 </h3>
 
                 <a
@@ -465,11 +481,11 @@
         <div class="footer-bottom">
 
             <p>
-                © 2026 TeyiSomadje. All rights reserved.
+                © 2026 TeyiSomadje. {% translate "All rights reserved." %}
             </p>
 
             <p>
-                Built with Django &amp; Bootstrap.
+                {% translate "Built with Django & Bootstrap." %}
             </p>
 
         </div>

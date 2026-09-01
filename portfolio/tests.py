@@ -4,6 +4,7 @@ from urllib.error import URLError
 
 from django.test import TestCase, override_settings
 from django.urls import reverse
+from django.utils import translation
 
 from .models import ContactSubmission, Project
 
@@ -20,6 +21,22 @@ class ProjectModelTests(TestCase):
             ["Django", "Bootstrap", "PostgreSQL"],
         )
 
+    def test_localized_content_uses_translation_and_falls_back_to_english(self):
+        project = Project(
+            title="English title",
+            title_de="Deutscher Titel",
+            description="English description",
+            description_de="Deutsche Beschreibung",
+        )
+
+        with translation.override("de"):
+            self.assertEqual(project.localized_title, "Deutscher Titel")
+            self.assertEqual(project.localized_description, "Deutsche Beschreibung")
+
+        with translation.override("fr"):
+            self.assertEqual(project.localized_title, "English title")
+            self.assertEqual(project.localized_description, "English description")
+
 
 @override_settings(
     BREVO_API_URL="https://api.brevo.test/v3/smtp/email",
@@ -32,11 +49,16 @@ class ProjectModelTests(TestCase):
 )
 class HomeViewTests(TestCase):
     def setUp(self):
-        self.url = reverse("home")
+        translation.activate("en")
+        self.url = "/en/"
         self.featured_project = Project.objects.create(
             title="Featured project",
+            title_de="Ausgewähltes Projekt",
+            title_fr="Projet présenté",
             slug="featured-project",
             description="Visible on the portfolio.",
+            description_de="Im Portfolio sichtbar.",
+            description_fr="Visible dans le portfolio.",
             technologies="Django, PostgreSQL",
             image_url="https://example.com/project.webp",
             featured=True,
@@ -49,6 +71,9 @@ class HomeViewTests(TestCase):
             featured=False,
         )
 
+    def tearDown(self):
+        translation.deactivate()
+
     def test_home_page_loads_successfully(self):
         response = self.client.get(self.url)
 
@@ -60,7 +85,7 @@ class HomeViewTests(TestCase):
 
         self.assertContains(
             response,
-            "portfolio/img/teyi-portrait.webp",
+            "portfolio/img/teyi-portrait.",
         )
         self.assertContains(
             response,
@@ -76,7 +101,7 @@ class HomeViewTests(TestCase):
 
         self.assertContains(
             response,
-            '<link rel="canonical" href="https://testserver/">',
+            '<link rel="canonical" href="https://testserver/en/">',
             html=True,
         )
         self.assertContains(
@@ -86,7 +111,7 @@ class HomeViewTests(TestCase):
         )
         self.assertContains(
             response,
-            'https://testserver/static/portfolio/img/hero/hero-assets.png',
+            "https://testserver/static/portfolio/img/hero/hero-assets.",
         )
         self.assertContains(response, '"@type": "Person"')
         self.assertContains(
@@ -120,7 +145,34 @@ class HomeViewTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/xml")
-        self.assertContains(response, "<loc>https://testserver/</loc>")
+        self.assertContains(response, "<loc>https://testserver/en/</loc>")
+        self.assertContains(response, "<loc>https://testserver/de/</loc>")
+        self.assertContains(response, "<loc>https://testserver/fr/</loc>")
+
+    def test_language_versions_render_translated_interface_and_content(self):
+        german = self.client.get("/de/")
+        french = self.client.get("/fr/")
+
+        self.assertContains(german, '<html lang="de">')
+        self.assertContains(german, "Ausgewählte Projekte")
+        self.assertContains(german, "Ausgewähltes Projekt")
+        self.assertContains(french, '<html lang="fr">')
+        self.assertContains(french, "Projets à la une")
+        self.assertContains(french, "Projet présenté")
+
+    def test_home_page_exposes_language_alternates(self):
+        response = self.client.get("/en/", secure=True)
+
+        self.assertContains(
+            response,
+            '<link rel="alternate" hreflang="de" href="https://testserver/de/">',
+            html=True,
+        )
+        self.assertContains(
+            response,
+            '<link rel="alternate" hreflang="fr" href="https://testserver/fr/">',
+            html=True,
+        )
 
     def test_home_page_displays_only_featured_projects(self):
         response = self.client.get(self.url)

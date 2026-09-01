@@ -13,6 +13,8 @@ from django.shortcuts import redirect, render
 from django.templatetags.static import static
 from django.urls import reverse
 from django.utils import timezone
+from django.utils import translation
+from django.utils.translation import gettext as _
 
 from .forms import ContactForm
 from .models import ContactSubmission, Project
@@ -36,7 +38,7 @@ def send_contact_email(*, name, email, message):
         },
         "to": [{"email": settings.CONTACT_EMAIL}],
         "replyTo": {"name": name, "email": email},
-        "subject": "New portfolio contact",
+        "subject": _("New portfolio contact"),
         "textContent": (
             f"Name: {name}\n"
             f"Email: {email}\n\n"
@@ -125,14 +127,17 @@ def home(request):
                 logger.info("Contact form honeypot rejected a submission.")
                 messages.success(
                     request,
-                    "Your message has been sent successfully.",
+                    _("Your message has been sent successfully."),
                 )
                 return redirect("home")
 
             if contact_rate_limit_reached(request):
                 messages.error(
                     request,
-                    "Too many messages have been sent. Please try again later.",
+                    _(
+                        "Too many messages have been sent. "
+                        "Please try again later."
+                    ),
                 )
             else:
                 try:
@@ -147,32 +152,45 @@ def home(request):
                     )
                     messages.error(
                         request,
-                        "Your message could not be sent. Please try again later.",
+                        _(
+                            "Your message could not be sent. "
+                            "Please try again later."
+                        ),
                     )
                 else:
                     messages.success(
                         request,
-                        "Your message has been sent successfully.",
+                        _("Your message has been sent successfully."),
                     )
                     return redirect("home")
 
     else:
         form = ContactForm()
 
+    language_urls = {}
+    for language_code, language_name in settings.LANGUAGES:
+        with translation.override(language_code):
+            language_urls[language_code] = {
+                "name": language_name,
+                "url": request.build_absolute_uri(reverse("home")),
+            }
+
     return render(
         request,
         "portfolio/home.html",
         {
             "canonical_url": request.build_absolute_uri(reverse("home")),
+            "contact_email": settings.CONTACT_EMAIL,
             "form": form,
             "projects": projects,
-            "seo_description": (
+            "language_urls": language_urls,
+            "seo_description": _(
                 "Full Stack Web Developer building modern, scalable web "
                 "applications with Python, Django and PostgreSQL."
             ),
             "seo_image_url": request.build_absolute_uri(
                 static("portfolio/img/hero/hero-assets.png")
             ),
-            "seo_title": "Teyi Somadje — Full Stack Web Developer",
+            "seo_title": _("Teyi Somadje — Full Stack Web Developer"),
         },
     )

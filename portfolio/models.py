@@ -1,8 +1,13 @@
 from django.db import models
+from django.utils import translation
 
 
 class Project(models.Model):
     title = models.CharField(max_length=150)
+
+    title_de = models.CharField(max_length=150, blank=True)
+
+    title_fr = models.CharField(max_length=150, blank=True)
 
     slug = models.SlugField(
         max_length=160,
@@ -10,6 +15,10 @@ class Project(models.Model):
     )
 
     description = models.TextField()
+
+    description_de = models.TextField(blank=True)
+
+    description_fr = models.TextField(blank=True)
 
     image = models.ImageField(
         upload_to="projects/",
@@ -59,6 +68,16 @@ class Project(models.Model):
             for technology in self.technologies.split(",")
             if technology.strip()
         ]
+
+    @property
+    def localized_title(self):
+        language = (translation.get_language() or "en").split("-")[0]
+        return getattr(self, f"title_{language}", "") or self.title
+
+    @property
+    def localized_description(self):
+        language = (translation.get_language() or "en").split("-")[0]
+        return getattr(self, f"description_{language}", "") or self.description
 
 
 class ContactSubmission(models.Model):

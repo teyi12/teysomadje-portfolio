@@ -1,0 +1,239 @@
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Your name"
+msgstr "Votre nom"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Tell me about your project..."
+msgstr "Parlez-moi de votre projet…"
+
+msgid "Leave this field empty"
+msgstr "Laissez ce champ vide"
+
+msgid "New portfolio contact"
+msgstr "Nouveau contact depuis le portfolio"
+
+msgid "Your message has been sent successfully."
+msgstr "Votre message a été envoyé avec succès."
+
+msgid "Too many messages have been sent. Please try again later."
+msgstr "Trop de messages ont été envoyés. Veuillez réessayer plus tard."
+
+msgid "Your message could not be sent. Please try again later."
+msgstr "Votre message n’a pas pu être envoyé. Veuillez réessayer plus tard."
+
+msgid "Full Stack Web Developer building modern, scalable web applications with Python, Django and PostgreSQL."
+msgstr "Développeur web Full Stack créant des applications modernes et évolutives avec Python, Django et PostgreSQL."
+
+msgid "Teyi Somadje — Full Stack Web Developer"
+msgstr "Teyi Somadje — Développeur web Full Stack"
+
+msgid "Python and Django development illustration"
+msgstr "Illustration du développement avec Python et Django"
+
+msgid "Full Stack Web Developer"
+msgstr "Développeur web Full Stack"
+
+msgid "Work"
+msgstr "Projets"
+
+msgid "About"
+msgstr "À propos"
+
+msgid "Stack"
+msgstr "Technologies"
+
+msgid "Services"
+msgstr "Services"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Language selector"
+msgstr "Sélecteur de langue"
+
+msgid "Let's talk"
+msgstr "Discutons"
+
+msgid "LET'S BUILD"
+msgstr "CRÉONS ENSEMBLE"
+
+msgid "Have a project in mind?"
+msgstr "Vous avez un projet en tête ?"
+
+msgid "Let's discuss how I can help turn your idea into a modern, scalable digital product."
+msgstr "Discutons de la manière dont je peux transformer votre idée en un produit numérique moderne et évolutif."
+
+msgid "Get in touch"
+msgstr "Me contacter"
+
+msgid "Full Stack Web Developer building modern web applications with Python and Django."
+msgstr "Développeur web Full Stack créant des applications modernes avec Python et Django."
+
+msgid "Navigation"
+msgstr "Navigation"
+
+msgid "Connect"
+msgstr "Réseaux"
+
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+msgid "Built with Django & Bootstrap."
+msgstr "Développé avec Django & Bootstrap."
+
+msgid "FULL STACK WEB DEVELOPER"
+msgstr "DÉVELOPPEUR WEB FULL STACK"
+
+msgid "I build modern,"
+msgstr "Je développe des"
+
+msgid "scalable"
+msgstr "applications web"
+
+msgid "web applications."
+msgstr "modernes et évolutives."
+
+msgid "I design and develop high-quality digital experiences with Python, Django and modern web technologies. From idea to deployment, I turn complex problems into simple, elegant solutions."
+msgstr "Je conçois et développe des expériences numériques de qualité avec Python, Django et les technologies web modernes. De l’idée au déploiement, je transforme les problèmes complexes en solutions simples et élégantes."
+
+msgid "View my work"
+msgstr "Voir mes projets"
+
+msgid "Contact me"
+msgstr "Me contacter"
+
+msgid "SELECTED WORK"
+msgstr "PROJETS SÉLECTIONNÉS"
+
+msgid "Featured Projects"
+msgstr "Projets à la une"
+
+msgid "A selection of web applications built with Django and modern web technologies."
+msgstr "Une sélection d’applications web développées avec Django et des technologies modernes."
+
+msgid "Live Demo"
+msgstr "Démo en ligne"
+
+msgid "No featured projects yet."
+msgstr "Aucun projet sélectionné pour le moment."
+
+msgid "Portrait of Teyi Guillaume Lawson-Somadje"
+msgstr "Portrait de Teyi Guillaume Lawson-Somadje"
+
+msgid "ABOUT ME"
+msgstr "À PROPOS"
+
+msgid "Building digital products with code, strategy and purpose."
+msgstr "Créer des produits numériques avec du code, de la stratégie et du sens."
+
+msgid "I'm a Full Stack Developer focused on building modern, scalable and user-centered web applications."
+msgstr "Je suis développeur Full Stack, spécialisé dans la création d’applications web modernes, évolutives et centrées sur l’utilisateur."
+
+msgid "My core stack is Python and Django, combined with Bootstrap, databases, APIs and modern frontend technologies."
+msgstr "Mon environnement principal repose sur Python et Django, associés à Bootstrap, aux bases de données, aux API et aux technologies frontend modernes."
+
+msgid "I enjoy turning ideas into real digital products — from architecture and backend development to responsive interfaces and deployment."
+msgstr "J’aime transformer les idées en produits numériques concrets — de l’architecture et du backend jusqu’aux interfaces responsives et au déploiement."
+
+msgid "Backend"
+msgstr "Backend"
+
+msgid "Web Apps"
+msgstr "Applications web"
+
+msgid "TECH STACK"
+msgstr "TECHNOLOGIES"
+
+msgid "Technologies I work with"
+msgstr "Les technologies que j’utilise"
+
+msgid "A modern development stack for building scalable web applications from backend architecture to production-ready interfaces."
+msgstr "Un environnement moderne pour créer des applications web évolutives, de l’architecture backend aux interfaces prêtes pour la production."
+
+msgid "Server-side development, application architecture and REST APIs."
+msgstr "Développement côté serveur, architecture applicative et API REST."
+
+msgid "Frontend"
+msgstr "Frontend"
+
+msgid "Responsive and accessible interfaces for modern web applications."
+msgstr "Interfaces responsives et accessibles pour des applications web modernes."
+
+msgid "Database"
+msgstr "Bases de données"
+
+msgid "Data modeling and persistence for reliable web applications."
+msgstr "Modélisation et persistance des données pour des applications web fiables."
+
+msgid "Tools & DevOps"
+msgstr "Outils & DevOps"
+
+msgid "Development workflows, version control, containers and Linux environments."
+msgstr "Flux de développement, gestion de versions, conteneurs et environnements Linux."
+
+msgid "Platforms & Integrations"
+msgstr "Plateformes & intégrations"
+
+msgid "External services, payments, media management and commerce platforms."
+msgstr "Services externes, paiements, gestion des médias et plateformes e-commerce."
+
+msgid "SERVICES"
+msgstr "SERVICES"
+
+msgid "What I can build for you"
+msgstr "Ce que je peux créer pour vous"
+
+msgid "From backend architecture to polished interfaces, I build complete digital products with a focus on performance, scalability and maintainability."
+msgstr "De l’architecture backend aux interfaces soignées, je développe des produits numériques complets, performants, évolutifs et maintenables."
+
+msgid "Web Application Development"
+msgstr "Développement d’applications web"
+
+msgid "Modern and scalable web applications built with Django, Bootstrap and reliable backend architecture."
+msgstr "Applications web modernes et évolutives développées avec Django, Bootstrap et une architecture backend fiable."
+
+msgid "Backend & API Development"
+msgstr "Développement backend & API"
+
+msgid "Secure backend systems, REST APIs, authentication, business logic and database integrations."
+msgstr "Systèmes backend sécurisés, API REST, authentification, logique métier et intégrations de bases de données."
+
+msgid "E-commerce & Platforms"
+msgstr "E-commerce & plateformes"
+
+msgid "Custom commerce experiences with product management, payments, customer flows and administration tools."
+msgstr "Solutions commerciales sur mesure avec gestion des produits, paiements, parcours clients et outils d’administration."
+
+msgid "Product & Technical Consulting"
+msgstr "Conseil produit & technique"
+
+msgid "Technical guidance for turning an idea into a structured, maintainable and scalable digital product."
+msgstr "Accompagnement technique pour transformer une idée en un produit numérique structuré, maintenable et évolutif."
+
+msgid "CONTACT"
+msgstr "CONTACT"
+
+msgid "Let's build something"
+msgstr "Construisons quelque chose"
+
+msgid "great together."
+msgstr "d’exception ensemble."
+
+msgid "Have a project, an idea or a technical challenge? Let's talk about how I can help turn it into a modern and scalable digital product."
+msgstr "Vous avez un projet, une idée ou un défi technique ? Discutons de la manière dont je peux le transformer en un produit numérique moderne et évolutif."
+
+msgid "Send message"
+msgstr "Envoyer le message"

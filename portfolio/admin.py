@@ -19,7 +19,11 @@ class ProjectAdmin(admin.ModelAdmin):
 
     search_fields = (
         "title",
+        "title_de",
+        "title_fr",
         "description",
+        "description_de",
+        "description_fr",
         "technologies",
     )
 
