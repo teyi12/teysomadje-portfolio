@@ -79,6 +79,12 @@ class Project(models.Model):
         language = (translation.get_language() or "en").split("-")[0]
         return getattr(self, f"description_{language}", "") or self.description
 
+    @property
+    def uses_legacy_hero_image(self):
+        return self.image_url.rstrip("/").endswith(
+            "/static/portfolio/img/hero/hero-assets.png"
+        )
+
 
 class ContactSubmission(models.Model):
     ip_hash = models.CharField(

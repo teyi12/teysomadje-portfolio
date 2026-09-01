@@ -77,11 +77,24 @@
 
         <div class="hero-image-grid"></div>
 
-        <img
-            src="{% static 'portfolio/img/hero/hero-assets.png' %}"
-            alt="{% translate 'Python and Django development illustration' %}"
-            class="hero-main-image"
-        >
+        <picture class="hero-picture">
+            <source
+                type="image/webp"
+                srcset="{% static 'portfolio/img/hero/hero-assets-640.webp' %} 640w,
+                        {% static 'portfolio/img/hero/hero-assets-960.webp' %} 960w,
+                        {% static 'portfolio/img/hero/hero-assets-1536.webp' %} 1536w"
+                sizes="(max-width: 991px) 92vw, 50vw"
+            >
+            <img
+                src="{% static 'portfolio/img/hero/hero-assets.png' %}"
+                alt="{% translate 'Python and Django development illustration' %}"
+                class="hero-main-image"
+                width="1536"
+                height="1024"
+                fetchpriority="high"
+                decoding="async"
+            >
+        </picture>
 
     </div>
 
@@ -135,13 +148,28 @@
                         <!-- IMAGE -->
                         <div class="project-image">
 
-                            {% if project.image_url %}
+                            {% if project.uses_legacy_hero_image %}
+
+                                <img
+                                    src="{% static 'portfolio/img/hero/hero-assets-640.webp' %}"
+                                    alt="{{ project.localized_title }}"
+                                    class="project-img"
+                                    width="640"
+                                    height="427"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+
+                            {% elif project.image_url %}
 
                                 <img
                                     src="{{ project.image_url }}"
                                     alt="{{ project.localized_title }}"
                                     class="project-img"
+                                    width="640"
+                                    height="427"
                                     loading="lazy"
+                                    decoding="async"
                                 >
 
                             {% elif project.image %}
@@ -150,7 +178,10 @@
                                     src="{{ project.image.url }}"
                                     alt="{{ project.localized_title }}"
                                     class="project-img"
+                                    width="640"
+                                    height="427"
                                     loading="lazy"
+                                    decoding="async"
                                 >
 
                             {% else %}

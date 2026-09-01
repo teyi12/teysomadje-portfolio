@@ -37,6 +37,15 @@ class ProjectModelTests(TestCase):
             self.assertEqual(project.localized_title, "English title")
             self.assertEqual(project.localized_description, "English description")
 
+    def test_legacy_hero_project_image_is_detected(self):
+        project = Project(
+            image_url=(
+                "https://example.com/static/portfolio/img/hero/hero-assets.png"
+            )
+        )
+
+        self.assertTrue(project.uses_legacy_hero_image)
+
 
 @override_settings(
     BREVO_API_URL="https://api.brevo.test/v3/smtp/email",
@@ -92,6 +101,16 @@ class HomeViewTests(TestCase):
             "Portrait of Teyi Guillaume Lawson-Somadje",
         )
         self.assertContains(response, 'loading="lazy"')
+
+    def test_home_page_uses_responsive_hero_images(self):
+        response = self.client.get(self.url)
+
+        self.assertContains(response, "hero-assets-640.")
+        self.assertContains(response, "hero-assets-960.")
+        self.assertContains(response, "hero-assets-1536.")
+        self.assertContains(response, 'fetchpriority="high"')
+        self.assertContains(response, 'width="1536"')
+        self.assertContains(response, 'height="1024"')
 
     def test_home_page_contains_canonical_and_social_metadata(self):
         response = self.client.get(
@@ -188,6 +207,17 @@ class HomeViewTests(TestCase):
 
         self.assertContains(response, self.featured_project.image_url)
         self.assertContains(response, 'loading="lazy"')
+
+    def test_legacy_hero_project_uses_lightweight_thumbnail(self):
+        self.featured_project.image_url = (
+            "https://example.com/static/portfolio/img/hero/hero-assets.png"
+        )
+        self.featured_project.save(update_fields=["image_url"])
+
+        response = self.client.get(self.url)
+
+        self.assertContains(response, "hero-assets-640.")
+        self.assertNotContains(response, self.featured_project.image_url)
 
     @patch("portfolio.views.urlopen")
     def test_invalid_contact_form_does_not_call_brevo(self, mocked_urlopen):

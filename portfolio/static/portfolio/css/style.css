@@ -3328,6 +3328,10 @@ a {
         color 0.25s ease;
 }
 
+.hero-picture {
+    display: block;
+}
+
 /* ========================================
    RESPONSIVE TYPOGRAPHY & LONG WORDS
 ======================================== */
