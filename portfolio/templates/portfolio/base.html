@@ -17,6 +17,10 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="Teyi Guillaume Lawson-Somadje">
     <meta name="theme-color" content="#0b0b0b">
+    <link rel="icon" href="{% static 'portfolio/img/brand/favicon.svg' %}" type="image/svg+xml">
+    <link rel="icon" href="{% static 'portfolio/img/brand/favicon-32.png' %}" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="{% static 'portfolio/img/brand/apple-touch-icon.png' %}" sizes="180x180">
+    <link rel="manifest" href="{% static 'portfolio/site.webmanifest' %}">
     <link rel="canonical" href="{{ canonical_url }}">
     {% for code, language in language_urls.items %}
     <link rel="alternate" hreflang="{{ code }}" href="{{ language.url }}">
@@ -30,12 +34,16 @@
     <meta property="og:description" content="{{ seo_description }}">
     <meta property="og:url" content="{{ canonical_url }}">
     <meta property="og:image" content="{{ seo_image_url }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{% translate 'Python and Django development illustration' %}">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ seo_title }}">
     <meta name="twitter:description" content="{{ seo_description }}">
     <meta name="twitter:image" content="{{ seo_image_url }}">
+    <meta name="twitter:image:alt" content="{% translate 'Teyi Somadje — Full Stack Web Developer' %}">
 
     <script type="application/ld+json">
     {

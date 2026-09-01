@@ -111,8 +111,11 @@ class HomeViewTests(TestCase):
         )
         self.assertContains(
             response,
-            "https://testserver/static/portfolio/img/hero/hero-assets.",
+            "https://testserver/static/portfolio/img/brand/social-card.",
         )
+        self.assertContains(response, 'property="og:image:width" content="1200"')
+        self.assertContains(response, 'rel="icon"')
+        self.assertContains(response, 'rel="manifest"')
         self.assertContains(response, '"@type": "Person"')
         self.assertContains(
             response,

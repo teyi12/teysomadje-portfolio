@@ -189,7 +189,7 @@ def home(request):
                 "applications with Python, Django and PostgreSQL."
             ),
             "seo_image_url": request.build_absolute_uri(
-                static("portfolio/img/hero/hero-assets.png")
+                static("portfolio/img/brand/social-card.png")
             ),
             "seo_title": _("Teyi Somadje — Full Stack Web Developer"),
         },
