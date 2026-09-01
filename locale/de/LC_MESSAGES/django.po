@@ -64,6 +64,12 @@ msgstr "Kontakt"
 msgid "Language selector"
 msgstr "Sprachauswahl"
 
+msgid "Skip to main content"
+msgstr "Zum Hauptinhalt springen"
+
+msgid "Main navigation"
+msgstr "Hauptnavigation"
+
 msgid "Let's talk"
 msgstr "Kontakt aufnehmen"
 

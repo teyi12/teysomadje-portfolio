@@ -746,7 +746,7 @@
 
     {% for message in messages %}
 
-        <div class="contact-alert">
+        <div class="contact-alert" role="status" aria-live="polite">
             {{ message }}
         </div>
 
@@ -775,7 +775,11 @@
 
         {% if form.name.errors %}
 
-            <div class="form-error">
+            <div
+                class="form-error"
+                id="{{ form.name.id_for_label }}-error"
+                role="alert"
+            >
                 {{ form.name.errors.0 }}
             </div>
 
@@ -798,7 +802,11 @@
 
         {% if form.email.errors %}
 
-            <div class="form-error">
+            <div
+                class="form-error"
+                id="{{ form.email.id_for_label }}-error"
+                role="alert"
+            >
                 {{ form.email.errors.0 }}
             </div>
 
@@ -821,7 +829,11 @@
 
         {% if form.message.errors %}
 
-            <div class="form-error">
+            <div
+                class="form-error"
+                id="{{ form.message.id_for_label }}-error"
+                role="alert"
+            >
                 {{ form.message.errors.0 }}
             </div>
 

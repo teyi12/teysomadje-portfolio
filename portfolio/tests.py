@@ -89,6 +89,25 @@ class HomeViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "portfolio/home.html")
 
+    def test_home_page_exposes_keyboard_navigation_landmarks(self):
+        response = self.client.get(self.url)
+
+        self.assertContains(response, 'class="skip-link" href="#main-content"')
+        self.assertContains(response, '<main id="main-content" tabindex="-1">')
+        self.assertContains(response, 'aria-label="Main navigation"')
+        self.assertContains(response, 'aria-current="page"')
+
+    def test_invalid_contact_fields_expose_accessible_errors(self):
+        response = self.client.post(
+            self.url,
+            {"name": "", "email": "invalid-email", "message": ""},
+        )
+
+        self.assertContains(response, 'aria-invalid="true"')
+        self.assertContains(response, 'aria-describedby="id_name-error"')
+        self.assertContains(response, 'id="id_name-error"')
+        self.assertContains(response, 'role="alert"')
+
     def test_home_page_displays_optimized_about_portrait(self):
         response = self.client.get(self.url)
 
