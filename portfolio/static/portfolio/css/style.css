@@ -3430,3 +3430,76 @@ html:lang(de) .contact-title {
         font-size: 1.85rem;
     }
 }
+
+/* ========================================
+   ABOUT PORTRAIT
+======================================== */
+
+.about-portrait {
+    position: relative;
+    width: min(100%, 460px);
+    margin: 0 auto;
+    isolation: isolate;
+}
+
+.about-portrait::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: 30px;
+    background: linear-gradient(
+        145deg,
+        rgba(245, 196, 0, 0.72),
+        rgba(245, 196, 0, 0.08) 42%,
+        rgba(255, 255, 255, 0.08)
+    );
+}
+
+.about-portrait-glow {
+    position: absolute;
+    inset: 12% -8% -8% 12%;
+    z-index: -2;
+    border-radius: 50%;
+    background: rgba(245, 196, 0, 0.12);
+    filter: blur(70px);
+}
+
+.about-portrait-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 8px solid var(--color-bg);
+    border-radius: 29px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.34);
+}
+
+@media (max-width: 991.98px) {
+    .about-portrait {
+        width: min(100%, 390px);
+    }
+
+    .about-title,
+    .about-content {
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .about-portrait {
+        width: min(88vw, 340px);
+    }
+
+    .about-portrait-image {
+        border-width: 6px;
+        border-radius: 23px;
+    }
+
+    .about-portrait::before {
+        border-radius: 24px;
+    }
+}
