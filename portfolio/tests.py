@@ -76,6 +76,14 @@ class HomeViewTests(TestCase):
             'https://testserver/static/portfolio/img/hero/hero-assets.png',
         )
         self.assertContains(response, '"@type": "Person"')
+        self.assertContains(
+            response,
+            'name="google-site-verification"',
+        )
+        self.assertContains(
+            response,
+            "YbInrVqq5hfxF1drNcYUQc8CgyvPghXS7tQhGY5ZHlI",
+        )
 
     def test_robots_txt_allows_crawling_and_links_sitemap(self):
         response = self.client.get(
