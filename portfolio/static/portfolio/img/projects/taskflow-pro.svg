@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="427" viewBox="0 0 640 427" role="img" aria-labelledby="title desc">
+  <title id="title">TaskFlow Pro dashboard preview</title>
+  <desc id="desc">Dark project management dashboard with task columns and progress charts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#08090c"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd21a"/>
+      <stop offset="1" stop-color="#f5a900"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000" flood-opacity=".38"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="427" fill="url(#bg)"/>
+  <circle cx="550" cy="40" r="170" fill="#f5c400" opacity=".06"/>
+  <circle cx="80" cy="410" r="180" fill="#3b82f6" opacity=".05"/>
+
+  <g filter="url(#shadow)">
+    <rect x="28" y="28" width="584" height="371" rx="18" fill="#0d1119" stroke="#29303c"/>
+    <rect x="28" y="28" width="118" height="371" rx="18" fill="#090c12"/>
+    <path d="M146 28v371" stroke="#252b35"/>
+
+    <circle cx="56" cy="59" r="11" fill="url(#accent)"/>
+    <path d="M51 59h10M56 54v10" stroke="#111827" stroke-width="2.2" stroke-linecap="round"/>
+    <text x="76" y="64" fill="#f8fafc" font-family="Arial, sans-serif" font-size="14" font-weight="700">TaskFlow</text>
+
+    <g fill="#70798a" font-family="Arial, sans-serif" font-size="10">
+      <text x="48" y="111">OVERVIEW</text>
+      <text x="48" y="151">PROJECTS</text>
+      <text x="48" y="191">MY TASKS</text>
+      <text x="48" y="231">TEAM</text>
+      <text x="48" y="271">REPORTS</text>
+    </g>
+    <rect x="39" y="91" width="98" height="30" rx="8" fill="#f5c400" opacity=".12"/>
+    <rect x="39" y="91" width="3" height="30" rx="2" fill="#f5c400"/>
+    <text x="48" y="111" fill="#f5c400" font-family="Arial, sans-serif" font-size="10" font-weight="700">OVERVIEW</text>
+
+    <text x="170" y="67" fill="#f8fafc" font-family="Arial, sans-serif" font-size="20" font-weight="700">Product Launch</text>
+    <text x="170" y="88" fill="#7f899a" font-family="Arial, sans-serif" font-size="10">Track tasks, owners and delivery progress</text>
+    <rect x="508" y="49" width="78" height="30" rx="8" fill="url(#accent)"/>
+    <text x="525" y="68" fill="#16120a" font-family="Arial, sans-serif" font-size="10" font-weight="700">+ New task</text>
+
+    <g>
+      <rect x="170" y="112" width="126" height="62" rx="11" fill="#151b25" stroke="#28303c"/>
+      <text x="184" y="133" fill="#7f899a" font-family="Arial, sans-serif" font-size="9">TOTAL TASKS</text>
+      <text x="184" y="158" fill="#f8fafc" font-family="Arial, sans-serif" font-size="22" font-weight="700">24</text>
+      <circle cx="271" cy="145" r="13" fill="#3b82f6" opacity=".14"/>
+      <path d="M265 145h12M271 139v12" stroke="#60a5fa" stroke-width="1.8" stroke-linecap="round"/>
+
+      <rect x="308" y="112" width="126" height="62" rx="11" fill="#151b25" stroke="#28303c"/>
+      <text x="322" y="133" fill="#7f899a" font-family="Arial, sans-serif" font-size="9">COMPLETED</text>
+      <text x="322" y="158" fill="#f8fafc" font-family="Arial, sans-serif" font-size="22" font-weight="700">68%</text>
+      <circle cx="409" cy="145" r="13" fill="#22c55e" opacity=".14"/>
+      <path d="m403 145 4 4 8-9" fill="none" stroke="#4ade80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <rect x="446" y="112" width="140" height="62" rx="11" fill="#151b25" stroke="#28303c"/>
+      <text x="460" y="133" fill="#7f899a" font-family="Arial, sans-serif" font-size="9">TEAM VELOCITY</text>
+      <text x="460" y="158" fill="#f8fafc" font-family="Arial, sans-serif" font-size="22" font-weight="700">+12%</text>
+      <path d="m534 158 12-12 9 5 15-19" fill="none" stroke="#f5c400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <g font-family="Arial, sans-serif">
+      <text x="170" y="207" fill="#9aa3b2" font-size="10" font-weight="700">TO DO</text>
+      <text x="312" y="207" fill="#9aa3b2" font-size="10" font-weight="700">IN PROGRESS</text>
+      <text x="454" y="207" fill="#9aa3b2" font-size="10" font-weight="700">COMPLETED</text>
+
+      <g fill="#151b25" stroke="#28303c">
+        <rect x="170" y="219" width="126" height="68" rx="10"/>
+        <rect x="170" y="297" width="126" height="68" rx="10"/>
+        <rect x="312" y="219" width="126" height="68" rx="10"/>
+        <rect x="312" y="297" width="126" height="68" rx="10"/>
+        <rect x="454" y="219" width="132" height="68" rx="10"/>
+        <rect x="454" y="297" width="132" height="68" rx="10"/>
+      </g>
+
+      <g font-size="10" fill="#e5e7eb">
+        <text x="182" y="244">Define user stories</text>
+        <text x="182" y="322">Review analytics</text>
+        <text x="324" y="244">Dashboard UI</text>
+        <text x="324" y="322">API integration</text>
+        <text x="466" y="244">Design system</text>
+        <text x="466" y="322">Database schema</text>
+      </g>
+      <g fill="#5d6675">
+        <rect x="182" y="255" width="66" height="4" rx="2"/>
+        <rect x="182" y="333" width="79" height="4" rx="2"/>
+        <rect x="324" y="255" width="71" height="4" rx="2"/>
+        <rect x="324" y="333" width="58" height="4" rx="2"/>
+        <rect x="466" y="255" width="64" height="4" rx="2"/>
+        <rect x="466" y="333" width="76" height="4" rx="2"/>
+      </g>
+      <g>
+        <circle cx="270" cy="270" r="8" fill="#8b5cf6"/>
+        <circle cx="412" cy="270" r="8" fill="#06b6d4"/>
+        <circle cx="554" cy="270" r="8" fill="#22c55e"/>
+        <circle cx="270" cy="348" r="8" fill="#f97316"/>
+        <circle cx="412" cy="348" r="8" fill="#ec4899"/>
+        <circle cx="554" cy="348" r="8" fill="#3b82f6"/>
+      </g>
+    </g>
+  </g>
+</svg>

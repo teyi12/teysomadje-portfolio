@@ -133,6 +133,9 @@ msgstr "Une sélection d’applications web développées avec Django et des tec
 msgid "Live Demo"
 msgstr "Démo en ligne"
 
+msgid "Demo project · In development"
+msgstr "Projet de démonstration · En développement"
+
 msgid "No featured projects yet."
 msgstr "Aucun projet sélectionné pour le moment."
 

@@ -31,6 +31,12 @@ class Project(models.Model):
         help_text="External image URL used in production.",
     )
 
+    static_image = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Static image path, for example portfolio/img/projects/project.svg",
+    )
+
     technologies = models.CharField(
         max_length=250,
         help_text="Example: Django, Bootstrap, PostgreSQL",
@@ -46,6 +52,11 @@ class Project(models.Model):
 
     featured = models.BooleanField(
         default=False,
+    )
+
+    is_demo = models.BooleanField(
+        default=False,
+        help_text="Marks a concept or demonstration project.",
     )
 
     created_at = models.DateTimeField(

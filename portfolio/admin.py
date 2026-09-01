@@ -7,6 +7,7 @@ from .models import Project
 class ProjectAdmin(admin.ModelAdmin):
     list_display = (
         "title",
+        "is_demo",
         "featured",
         "created_at",
         "updated_at",
@@ -14,6 +15,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
     list_filter = (
         "featured",
+        "is_demo",
         "created_at",
     )
 

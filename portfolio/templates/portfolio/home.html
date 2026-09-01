@@ -160,6 +160,18 @@
                                     decoding="async"
                                 >
 
+                            {% elif project.static_image %}
+
+                                <img
+                                    src="{% static project.static_image %}"
+                                    alt="{{ project.localized_title }}"
+                                    class="project-img"
+                                    width="640"
+                                    height="427"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+
                             {% elif project.image_url %}
 
                                 <img
@@ -197,6 +209,12 @@
 
                         <!-- CONTENT -->
                         <div class="project-content">
+
+                            {% if project.is_demo %}
+                                <p class="project-status">
+                                    {% translate "Demo project · In development" %}
+                                </p>
+                            {% endif %}
 
                             <!-- TECHNOLOGIES -->
                             <div class="project-tags">

@@ -227,6 +227,22 @@ class HomeViewTests(TestCase):
         self.assertContains(response, self.featured_project.image_url)
         self.assertContains(response, 'loading="lazy"')
 
+    def test_demo_project_uses_static_image_and_displays_status(self):
+        demo_project = Project.objects.create(
+            title="Demo project",
+            slug="demo-project",
+            description="A transparent demonstration project.",
+            static_image="portfolio/img/projects/taskflow-pro.svg",
+            technologies="Django, PostgreSQL",
+            featured=True,
+            is_demo=True,
+        )
+
+        response = self.client.get(self.url)
+
+        self.assertContains(response, "taskflow-pro.")
+        self.assertContains(response, "Demo project · In development")
+
     def test_legacy_hero_project_uses_lightweight_thumbnail(self):
         self.featured_project.image_url = (
             "https://example.com/static/portfolio/img/hero/hero-assets.png"

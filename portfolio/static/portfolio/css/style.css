@@ -2438,6 +2438,22 @@ main:focus {
     outline-offset: 2px;
 }
 
+.project-status {
+    width: fit-content;
+    min-height: auto !important;
+    margin: 0 0 14px !important;
+    padding: 6px 10px;
+    color: #f8d84a !important;
+    background: rgba(245, 196, 0, 0.08);
+    border: 1px solid rgba(245, 196, 0, 0.3);
+    border-radius: 999px;
+    font-size: 11px !important;
+    font-weight: 700;
+    line-height: 1.25 !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
 /* ========================================
    LANGUAGE SWITCHER
 ======================================== */
