@@ -55,6 +55,19 @@ class HomeViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "portfolio/home.html")
 
+    def test_home_page_displays_optimized_about_portrait(self):
+        response = self.client.get(self.url)
+
+        self.assertContains(
+            response,
+            "portfolio/img/teyi-portrait.webp",
+        )
+        self.assertContains(
+            response,
+            "Portrait of Teyi Guillaume Lawson-Somadje",
+        )
+        self.assertContains(response, 'loading="lazy"')
+
     def test_home_page_contains_canonical_and_social_metadata(self):
         response = self.client.get(
             self.url,
