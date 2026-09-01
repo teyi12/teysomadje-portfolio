@@ -3327,3 +3327,106 @@ a {
     transition:
         color 0.25s ease;
 }
+
+/* ========================================
+   RESPONSIVE TYPOGRAPHY & LONG WORDS
+======================================== */
+
+.hero-title,
+.section-heading h2,
+.about-title,
+.contact-title,
+.footer-cta h2,
+.project-content h3,
+.service-card h3,
+.skill-category h3 {
+    overflow-wrap: anywhere;
+    hyphens: auto;
+}
+
+html:lang(de) .hero-title {
+    font-size: clamp(2.8rem, 5vw, 5.2rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+}
+
+html:lang(de) .section-heading h2 {
+    font-size: clamp(2rem, 4vw, 3.1rem);
+}
+
+html:lang(de) .about-title {
+    font-size: clamp(2.2rem, 4.3vw, 3.5rem);
+}
+
+html:lang(de) .contact-title {
+    font-size: clamp(2.3rem, 4.5vw, 3.9rem);
+}
+
+@media (max-width: 767.98px) {
+    .hero-title {
+        font-size: 2.65rem;
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+    }
+
+    .section-heading h2 {
+        font-size: 2rem;
+        line-height: 1.15;
+    }
+
+    .about-title {
+        font-size: 2.15rem;
+        line-height: 1.12;
+    }
+
+    .contact-title {
+        font-size: 2.2rem;
+        line-height: 1.1;
+    }
+
+    .footer-cta h2 {
+        font-size: 1.8rem;
+        line-height: 1.15;
+    }
+
+    html:lang(de) .hero-title {
+        font-size: 2.4rem;
+    }
+
+    html:lang(de) .section-heading h2 {
+        font-size: 1.85rem;
+    }
+
+    html:lang(de) .about-title,
+    html:lang(de) .contact-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero-title {
+        font-size: 2.35rem;
+    }
+
+    .section-heading h2 {
+        font-size: 1.85rem;
+    }
+
+    .about-title,
+    .contact-title {
+        font-size: 2rem;
+    }
+
+    html:lang(de) .hero-title {
+        font-size: 2.15rem;
+    }
+
+    html:lang(de) .section-heading h2 {
+        font-size: 1.7rem;
+    }
+
+    html:lang(de) .about-title,
+    html:lang(de) .contact-title {
+        font-size: 1.85rem;
+    }
+}
